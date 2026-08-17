@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "tagline": "NIGHTCLUB · QR MENU"
+  },
+  "ui": {
+    "follow": "Follow us",
+    "igView": "View on Instagram",
+    "footerTag": "The delicious companion of good times",
+    "fxNote": "FX equivalents calculated at TCMB selling rate",
+    "skipIntro": "Go to Menu"
+  },
+  "groups": {
+    "alkollu": "Alcoholic Drinks",
+    "alkolsuz": "Non-Alcoholic Drinks",
+    "aperatif": "Snacks",
+    "ana-yemek": "Main Courses",
+    "tatli": "Desserts"
+  },
+  "notes": {
+    "Şişe": "Bottle",
+    "33 cl": "33 cl"
+  },
+  "sections": {
+    "kokteyller": {
+      "title": "Cocktails",
+      "subtitle": "Signature cocktails · Glass",
+      "items": {
+        "Mojito": {
+          "desc": "White rum, fresh mint, lime, sugar syrup, soda"
+        },
+        "Passion Mojito": {
+          "desc": "White rum, passion fruit purée, mint"
+        },
+        "Whiskey Sour": {
+          "desc": "Bourbon, fresh lemon, sugar syrup"
+        },
+        "Long Island Iced Tea": {
+          "desc": "Vodka, gin, tequila, white rum, triple sec, lime"
+        },
+        "Negroni": {
+          "desc": "Gin, Campari, Martini Rosso"
+        },
+        "Cosmopolitan": {
+          "desc": "Vodka, Cointreau, cranberry juice, lime"
+        },
+        "Margarita": {
+          "desc": "Tequila, triple sec, lime juice"
+        },
+        "Espresso Martini": {
+          "desc": "Vodka, coffee, espresso"
+        },
+        "Pornstar Martini": {
+          "desc": "Vodka, passion fruit purée, lemon"
+        },
+        "Aperol Spritz": {
+          "desc": "Aperol, Prosecco, soda"
+        },
+        "Hugo Spritz": {
+          "desc": "St. Germain, Prosecco, soda, mint"
+        },
+        "Pina Colada": {
+          "desc": "White rum, Malibu, coconut cream, pineapple juice"
+        },
+        "Lynchburg Lemonade": {
+          "desc": "Jack Daniel's, triple sec, lime, lemonade"
+        },
+        "Jäger Bomb": {
+          "desc": "Jägermeister, Red Bull"
+        },
+        "Sex on the Beach": {
+          "desc": "Vodka, peach schnapps, cranberry juice"
+        },
+        "NOX Special": {
+          "desc": "The bartender's special recipe"
+        }
+      }
+    },
+    "alkolsuz-kokteyller": {
+      "title": "Non-Alcoholic Cocktails",
+      "subtitle": "Glass",
+      "items": {
+        "Virgin Mojito": {
+          "desc": "Lime, mint, sugar syrup, soda"
+        },
+        "Virgin Strawberry Mojito": {
+          "desc": "Strawberry, lime, sugar syrup, soda"
+        },
+        "Virgin Pina Colada": {
+          "desc": "Pineapple juice, coconut cream"
+        },
+        "Virgin Sex on the Beach": {
+          "desc": "Orange juice, peach purée, cranberry juice"
+        },
+        "Berry Lemonade": {
+          "desc": "Forest berry purée, lemon juice, sugar syrup, soda"
+        },
+        "Tropical Sunset": {
+          "desc": "Orange juice, pineapple juice, grenadine syrup"
+        }
+      }
+    },
+    "shotlar": {
+      "title": "Shots",
+      "subtitle": "Each",
+      "items": {
+        "Tekila": {
+          "name": "Tequila"
+        },
+        "Cin": {
+          "name": "Gin"
+        },
+        "Rakı": {
+          "name": "Raki"
+        }
+      }
+    },
+    "biralar": {
+      "title": "Beers",
+      "subtitle": "33 cl",
+      "items": {}
+    },
+    "viski": {
+      "title": "Whisky",
+      "subtitle": "Bottle 70 cl",
+      "items": {}
+    },
+    "votka": {
+      "title": "Vodka",
+      "subtitle": "Bottle 70 cl",
+      "items": {}
+    },
+    "cin": {
+      "title": "Gin",
+      "subtitle": "Glass",
+      "items": {}
+    },
+    "rom": {
+      "title": "Rum",
+      "subtitle": "Glass",
+      "items": {}
+    },
+    "tekila": {
+      "title": "Tequila",
+      "subtitle": "Glass",
+      "items": {}
+    },
+    "likorler": {
+      "title": "Liqueurs",
+      "subtitle": "Glass",
+      "items": {}
+    },
+    "vermut-brandy": {
+      "title": "Vermouth & Brandy",
+      "subtitle": "Glass",
+      "items": {}
+    },
+    "sampanyalar": {
+      "title": "Champagnes",
+      "subtitle": "Bottle",
+      "items": {}
+    },
+    "icecekler": {
+      "title": "Drinks",
+      "subtitle": "Each",
+      "items": {
+        "Kola": {
+          "name": "Cola"
+        },
+        "Kola Zero": {
+          "name": "Cola Zero"
+        },
+        "Meyve Suyu": {
+          "name": "Fruit Juice"
+        },
+        "Su": {
+          "name": "Water"
+        }
+      }
+    },
+    "atistirmaliklar": {
+      "title": "Snacks",
+      "subtitle": "",
+      "items": {
+        "Patates Kızartması": {
+          "name": "French Fries"
+        },
+        "Nugget": {
+          "name": "Chicken Nuggets"
+        },
+        "Çıtır Tavuk Sepeti": {
+          "name": "Crispy Chicken Basket",
+          "desc": "Breaded chicken pieces, French fries, ranch sauce"
+        },
+        "Sosis Sepeti": {
+          "name": "Sausage Basket",
+          "desc": "Grilled sausage, French fries"
+        },
+        "Bira Tabağı": {
+          "name": "Beer Plate"
+        },
+        "İki Kişilik Paylaşım Tabağı": {
+          "name": "Sharing Plate for Two",
+          "desc": "French fries, nuggets, crispy chicken, sausage, onion rings, assorted snacks, pickles — with barbecue and ranch sauce, ketchup, mayonnaise"
+        },
+        "Karışık Çerez Tabağı": {
+          "name": "Mixed Snack Plate"
+        },
+        "Tuzlu Fıstık": {
+          "name": "Salted Peanuts"
+        },
+        "Cips": {
+          "name": "Crisps"
+        },
+        "Meyve Tabağı": {
+          "name": "Fruit Plate",
+          "desc": "Carefully prepared from fresh seasonal fruits, with an eye-catching presentation"
+        }
+      }
+    },
+    "wrap-fajita": {
+      "title": "Wrap & Fajita",
+      "subtitle": "",
+      "items": {
+        "Tavuk Fajita Wrap": {
+          "name": "Chicken Fajita Wrap",
+          "desc": "Marinated chicken, mixed peppers, onion, cheddar cheese, special fajita sauce — served with French fries"
+        },
+        "Et Fajita Wrap": {
+          "name": "Beef Fajita Wrap",
+          "desc": "Marinated beef, mixed peppers, onion, cheddar cheese, special fajita sauce — served with French fries"
+        }
+      }
+    },
+    "kahvalti": {
+      "title": "Breakfast",
+      "subtitle": "",
+      "items": {
+        "Serpme Kahvaltı": {
+          "name": "Turkish Breakfast Spread",
+          "desc": "White cheese, kashar cheese, black & green olives, tomatoes, cucumber, seasonal greens, honey, butter, assorted jams, Nutella, boiled egg, bread basket, simit, tea"
+        },
+        "Tabak Kahvaltı": {
+          "name": "Breakfast Plate",
+          "desc": "White cheese, kashar cheese, black & green olives, tomatoes, cucumber, honey, butter, jam, bread"
+        },
+        "Sahanda Yumurta": {
+          "name": "Fried Eggs",
+          "desc": "2 eggs, cooked in butter — served with bread"
+        },
+        "Sucuklu Yumurta": {
+          "name": "Eggs with Sucuk (Turkish sausage)",
+          "desc": "2 eggs, cooked with beef sucuk and butter — served with bread"
+        },
+        "Sucuk Tava": {
+          "name": "Fried Sucuk (Turkish sausage)",
+          "desc": "Grilled beef sucuk, served with tomatoes, green peppers and bread"
+        },
+        "Menemen": {
+          "name": "Menemen (Turkish scrambled eggs)",
+          "desc": "Prepared with tomatoes, peppers, onion and eggs — served with bread"
+        }
+      }
+    },
+    "tostlar": {
+      "title": "Toasts",
+      "subtitle": "",
+      "items": {
+        "Karışık Tost": {
+          "name": "Mixed Toast",
+          "desc": "Kashar cheese, beef sucuk, salami, tomatoes"
+        },
+        "Kaşarlı Tost": {
+          "name": "Kashar Cheese Toast",
+          "desc": "Kashar cheese, beef sucuk, salami, tomatoes"
+        },
+        "Sucuklu Tost": {
+          "name": "Sucuk Toast",
+          "desc": "Beef sucuk, kashar cheese"
+        }
+      }
+    },
+    "burgerler": {
+      "title": "Burgers",
+      "subtitle": "Served with French fries",
+      "items": {
+        "Hamburger": {
+          "desc": "150 g beef burger patty, lettuce, tomato, pickles, onion, special burger sauce"
+        },
+        "Cheeseburger": {
+          "desc": "150 g beef burger patty, cheddar cheese, lettuce, tomato, pickles, onion, special burger sauce"
+        }
+      }
+    },
+    "makarnalar": {
+      "title": "Pasta",
+      "subtitle": "",
+      "items": {
+        "Penne Arrabbiata": {
+          "desc": "Spicy tomato sauce, garlic, basil"
+        },
+        "Spaghetti Bolognese": {
+          "desc": "Minced meat sauce, tomatoes, onion, spices, parmesan"
+        },
+        "Cream Mushroom Spaghetti": {
+          "name": "Creamy Mushroom Spaghetti",
+          "desc": "Creamy mushroom sauce, parmesan, basil"
+        }
+      }
+    },
+    "salatalar": {
+      "title": "Salads",
+      "subtitle": "",
+      "items": {
+        "Ton Balıklı Salata": {
+          "name": "Tuna Salad",
+          "desc": "Lettuce, tuna, corn, olives, tomatoes, cucumber, lemon dressing"
+        },
+        "Mevsim Salata": {
+          "name": "Seasonal Salad",
+          "desc": "Seasonal greens, tomatoes, carrot, corn, lemon dressing"
+        },
+        "Sezar Salata": {
+          "name": "Caesar Salad",
+          "desc": "Lettuce, chicken, parmesan, croutons, Caesar dressing"
+        }
+      }
+    },
+    "tatlilar": {
+      "title": "Desserts",
+      "subtitle": "",
+      "items": {
+        "Limonlu Cheesecake": {
+          "name": "Lemon Cheesecake"
+        },
+        "Frambuazlı Cheesecake": {
+          "name": "Raspberry Cheesecake"
+        }
+      }
+    },
+    "sicak-icecekler": {
+      "title": "Hot Drinks",
+      "subtitle": "Each",
+      "items": {
+        "Türk Kahvesi": {
+          "name": "Turkish Coffee"
+        },
+        "Sıcak Çikolata": {
+          "name": "Hot Chocolate"
+        },
+        "Çay": {
+          "name": "Tea"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+token.txt
+github token.txt
+*.pyc
+__pycache__/
+.omo/
+.playwright-mcp/

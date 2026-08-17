@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "tagline": "نادي ليلي · قائمة QR"
+  },
+  "ui": {
+    "follow": "تابعونا",
+    "igView": "عرض على إنستغرام",
+    "footerTag": "الرفيق اللذيذ للأوقات الجميلة",
+    "fxNote": "المعادلات بالعملة الأجنبية محسوبة بسعر بيع البنك المركزي التركي",
+    "skipIntro": "انتقل إلى القائمة"
+  },
+  "groups": {
+    "alkollu": "المشروبات الكحولية",
+    "alkolsuz": "المشروبات غير الكحولية",
+    "aperatif": "المقبلات",
+    "ana-yemek": "الأطباق الرئيسية",
+    "tatli": "الحلويات"
+  },
+  "notes": {
+    "Şişe": "زجاجة",
+    "33 cl": "33 cl"
+  },
+  "sections": {
+    "kokteyller": {
+      "title": "كوكتيلات",
+      "subtitle": "كوكتيلات مميزة · كأس",
+      "items": {
+        "Mojito": {
+          "desc": "روم أبيض، نعناع طازج، ليمون أخضر، شراب سكر، صودا"
+        },
+        "Passion Mojito": {
+          "name": "باسيون موهيتو",
+          "desc": "روم أبيض، مهروس فاكهة الآلام، نعناع"
+        },
+        "Whiskey Sour": {
+          "desc": "بوربون، ليمون طازج، شراب سكر"
+        },
+        "Long Island Iced Tea": {
+          "desc": "فودكا، جين، تيكيلا، روم أبيض، تريبل سيك، ليمون أخضر"
+        },
+        "Negroni": {
+          "desc": "جين، Campari، Martini Rosso"
+        },
+        "Cosmopolitan": {
+          "desc": "فودكا، Cointreau، عصير توت بري، ليمون أخضر"
+        },
+        "Margarita": {
+          "desc": "تيكيلا، تريبل سيك، عصير ليمون أخضر"
+        },
+        "Espresso Martini": {
+          "desc": "فودكا، قهوة، إسبريسو"
+        },
+        "Pornstar Martini": {
+          "desc": "فودكا، مهروس فاكهة الآلام، ليمون"
+        },
+        "Aperol Spritz": {
+          "desc": "Aperol، Prosecco، صودا"
+        },
+        "Hugo Spritz": {
+          "desc": "St. Germain، Prosecco، صودا، نعناع"
+        },
+        "Pina Colada": {
+          "desc": "روم أبيض، Malibu، كريمة جوز الهند، عصير أناناس"
+        },
+        "Lynchburg Lemonade": {
+          "desc": "Jack Daniel's، تريبل سيك، ليمون أخضر، ليمونادة"
+        },
+        "Jäger Bomb": {
+          "desc": "Jägermeister، Red Bull"
+        },
+        "Sex on the Beach": {
+          "desc": "فودكا، مشروب خوخ، عصير توت بري"
+        },
+        "NOX Special": {
+          "desc": "وصفة خاصة من البارمان"
+        }
+      }
+    },
+    "alkolsuz-kokteyller": {
+      "title": "كوكتيلات غير كحولية",
+      "subtitle": "كأس",
+      "items": {
+        "Virgin Mojito": {
+          "desc": "ليمون أخضر، نعناع، شراب سكر، صودا"
+        },
+        "Virgin Strawberry Mojito": {
+          "name": "فيرجن ستروبيري موهيتو",
+          "desc": "فراولة، ليمون أخضر، شراب سكر، صودا"
+        },
+        "Virgin Pina Colada": {
+          "desc": "عصير أناناس، كريمة جوز الهند"
+        },
+        "Virgin Sex on the Beach": {
+          "desc": "عصير برتقال، مهروس خوخ، عصير توت بري"
+        },
+        "Berry Lemonade": {
+          "desc": "مهروس توت الغابة، عصير ليمون، شراب سكر، صودا"
+        },
+        "Tropical Sunset": {
+          "desc": "عصير برتقال، عصير أناناس، شراب غرينادين"
+        }
+      }
+    },
+    "shotlar": {
+      "title": "شوتات",
+      "subtitle": "واحدة",
+      "items": {
+        "Tekila": {
+          "name": "تيكيلا"
+        },
+        "Cin": {
+          "name": "جين"
+        },
+        "Sambuca": {
+          "name": "سامبوكا"
+        },
+        "Rakı": {
+          "name": "راكي"
+        }
+      }
+    },
+    "biralar": {
+      "title": "بيرة",
+      "subtitle": "33 cl",
+      "items": {}
+    },
+    "viski": {
+      "title": "ويسكي",
+      "subtitle": "زجاجة 70 cl",
+      "items": {}
+    },
+    "votka": {
+      "title": "فودكا",
+      "subtitle": "زجاجة 70 cl",
+      "items": {}
+    },
+    "cin": {
+      "title": "جين",
+      "subtitle": "كأس",
+      "items": {}
+    },
+    "rom": {
+      "title": "روم",
+      "subtitle": "كأس",
+      "items": {}
+    },
+    "tekila": {
+      "title": "تيكيلا",
+      "subtitle": "كأس",
+      "items": {}
+    },
+    "likorler": {
+      "title": "ليكير",
+      "subtitle": "كأس",
+      "items": {}
+    },
+    "vermut-brandy": {
+      "title": "فيرموت وبراندي",
+      "subtitle": "كأس",
+      "items": {}
+    },
+    "sampanyalar": {
+      "title": "شمبانيا",
+      "subtitle": "زجاجة",
+      "items": {}
+    },
+    "icecekler": {
+      "title": "مشروبات",
+      "subtitle": "واحدة",
+      "items": {
+        "Kola": {
+          "name": "كولا"
+        },
+        "Kola Zero": {
+          "name": "كولا زيرو"
+        },
+        "Fanta": {
+          "name": "فانتا"
+        },
+        "Meyve Suyu": {
+          "name": "عصير فواكه"
+        },
+        "Soda": {
+          "name": "صودا"
+        },
+        "Su": {
+          "name": "ماء"
+        }
+      }
+    },
+    "atistirmaliklar": {
+      "title": "وجبات خفيفة",
+      "subtitle": "",
+      "items": {
+        "Patates Kızartması": {
+          "name": "بطاطس مقلية"
+        },
+        "Nugget": {
+          "name": "ناجتس"
+        },
+        "Çıtır Tavuk Sepeti": {
+          "name": "سلة دجاج مقرمش",
+          "desc": "قطع دجاج مغطاة بالبقسماط، بطاطس مقلية، صلصة رانش"
+        },
+        "Sosis Sepeti": {
+          "name": "سلة نقانق",
+          "desc": "نقانق مشوية، بطاطس مقلية"
+        },
+        "Bira Tabağı": {
+          "name": "طبق بيرة"
+        },
+        "İki Kişilik Paylaşım Tabağı": {
+          "name": "طبق مشاركة لشخصين",
+          "desc": "بطاطس مقلية، ناجتس، دجاج مقرمش، نقانق، حلقات بصل، أنواع مكسرات، مخلل — مع صلصة باربكيو ورانش وكاتشب ومايونيز"
+        },
+        "Karışık Çerez Tabağı": {
+          "name": "طبق مكسرات مشكل"
+        },
+        "Tuzlu Fıstık": {
+          "name": "فول سوداني مملح"
+        },
+        "Cips": {
+          "name": "رقائق بطاطس"
+        },
+        "Meyve Tabağı": {
+          "name": "طبق فواكه",
+          "desc": "محضّر بعناية من فواكه طازجة وموسمية، بتقديم جذاب"
+        }
+      }
+    },
+    "wrap-fajita": {
+      "title": "وراب وفاهيتا",
+      "subtitle": "",
+      "items": {
+        "Tavuk Fajita Wrap": {
+          "name": "وراب فاهيتا دجاج",
+          "desc": "دجاج متبل، فلفل ملون، بصل، جبنة شيدر، صلصة فاهيتا خاصة — يُقدَّم مع البطاطس المقلية"
+        },
+        "Et Fajita Wrap": {
+          "name": "وراب فاهيتا لحم",
+          "desc": "لحم بقري متبل، فلفل ملون، بصل، جبنة شيدر، صلصة فاهيتا خاصة — يُقدَّم مع البطاطس المقلية"
+        }
+      }
+    },
+    "kahvalti": {
+      "title": "فطور",
+      "subtitle": "",
+      "items": {
+        "Serpme Kahvaltı": {
+          "name": "فطور تركي متكامل",
+          "desc": "جبنة بيضاء، جبنة كاشار، زيتون أسود وأخضر، طماطم، خيار، خضروات موسمية، عسل، زبدة، أنواع مربى، نوتيلا، بيض مسلوق، سلة خبز، سميط، شاي"
+        },
+        "Tabak Kahvaltı": {
+          "name": "فطور طبق",
+          "desc": "جبنة بيضاء، جبنة كاشار، زيتون أسود وأخضر، طماطم، خيار، عسل، زبدة، مربى، خبز"
+        },
+        "Sahanda Yumurta": {
+          "name": "بيض مقلي",
+          "desc": "بيضتان محضّرتان بالزبدة — يُقدَّم مع الخبز"
+        },
+        "Sucuklu Yumurta": {
+          "name": "بيض مع سجق",
+          "desc": "بيضتان محضّرتان مع سجق البقر والزبدة — يُقدَّم مع الخبز"
+        },
+        "Sucuk Tava": {
+          "name": "سجق مقلي",
+          "desc": "سجق بقري مشوي، يُقدَّم مع الطماطم والفلفل الأخضر والخبز"
+        },
+        "Menemen": {
+          "name": "منمن",
+          "desc": "محضّر من الطماطم والفلفل والبصل والبيض — يُقدَّم مع الخبز"
+        }
+      }
+    },
+    "tostlar": {
+      "title": "توست",
+      "subtitle": "",
+      "items": {
+        "Karışık Tost": {
+          "name": "توست مشكل",
+          "desc": "جبنة كاشار، سجق بقري، سلامي، طماطم"
+        },
+        "Kaşarlı Tost": {
+          "name": "توست بالجبنة",
+          "desc": "جبنة كاشار، سجق بقري، سلامي، طماطم"
+        },
+        "Sucuklu Tost": {
+          "name": "توست بالسجق",
+          "desc": "سجق بقري، جبنة كاشار"
+        }
+      }
+    },
+    "burgerler": {
+      "title": "برغر",
+      "subtitle": "يُقدَّم مع البطاطس المقلية",
+      "items": {
+        "Hamburger": {
+          "name": "هامبرغر",
+          "desc": "قرص برغر بقري 150 غرام، خس، طماطم، مخلل، بصل، صلصة برغر خاصة"
+        },
+        "Cheeseburger": {
+          "name": "تشيز برغر",
+          "desc": "قرص برغر بقري 150 غرام، جبنة شيدر، خس، طماطم، مخلل، بصل، صلصة برغر خاصة"
+        }
+      }
+    },
+    "makarnalar": {
+      "title": "معكرونة",
+      "subtitle": "",
+      "items": {
+        "Penne Arrabbiata": {
+          "desc": "صلصة طماطم حارة، ثوم، ريحان"
+        },
+        "Spaghetti Bolognese": {
+          "desc": "صلصة لحم مفروم، طماطم، بصل، بهارات، بارميزان"
+        },
+        "Cream Mushroom Spaghetti": {
+          "desc": "صلصة فطر بالكريمة، بارميزان، ريحان"
+        }
+      }
+    },
+    "salatalar": {
+      "title": "سلطات",
+      "subtitle": "",
+      "items": {
+        "Ton Balıklı Salata": {
+          "name": "سلطة تونة",
+          "desc": "خس، تونة، ذرة، زيتون، طماطم، خيار، صلصة ليمون"
+        },
+        "Mevsim Salata": {
+          "name": "سلطة موسمية",
+          "desc": "خضروات موسمية، طماطم، جزر، ذرة، صلصة ليمون"
+        },
+        "Sezar Salata": {
+          "name": "سلطة سيزر",
+          "desc": "خس، دجاج، بارميزان، خبز محمص، صلصة سيزر"
+        }
+      }
+    },
+    "tatlilar": {
+      "title": "حلويات",
+      "subtitle": "",
+      "items": {
+        "Limonlu Cheesecake": {
+          "name": "تشيز كيك بالليمون"
+        },
+        "Frambuazlı Cheesecake": {
+          "name": "تشيز كيك بالتوت"
+        }
+      }
+    },
+    "sicak-icecekler": {
+      "title": "مشروبات ساخنة",
+      "subtitle": "واحدة",
+      "items": {
+        "Türk Kahvesi": {
+          "name": "قهوة تركية"
+        },
+        "Americano": {
+          "name": "أمريكانو"
+        },
+        "Double Espresso": {
+          "name": "دبل إسبريسو"
+        },
+        "Cappuccino": {
+          "name": "كابتشينو"
+        },
+        "Latte": {
+          "name": "لاتيه"
+        },
+        "Sıcak Çikolata": {
+          "name": "شوكولاتة ساخنة"
+        },
+        "Çay": {
+          "name": "شاي"
+        }
+      }
+    }
+  }
+}

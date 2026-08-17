@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "tagline": "夜店 · 扫码菜单"
+  },
+  "ui": {
+    "follow": "关注我们",
+    "igView": "在Instagram上查看",
+    "footerTag": "美好时光的美味伴侣",
+    "fxNote": "外币金额按土耳其央行卖出价计算",
+    "skipIntro": "进入菜单"
+  },
+  "groups": {
+    "alkollu": "酒精饮品",
+    "alkolsuz": "无酒精饮品",
+    "aperatif": "小吃",
+    "ana-yemek": "主菜",
+    "tatli": "甜点"
+  },
+  "notes": {
+    "Şişe": "瓶装",
+    "33 cl": "33 cl"
+  },
+  "sections": {
+    "kokteyller": {
+      "title": "鸡尾酒",
+      "subtitle": "招牌鸡尾酒 · 杯",
+      "items": {
+        "Mojito": {
+          "name": "莫吉托",
+          "desc": "白朗姆酒、新鲜薄荷、青柠、糖浆、苏打水"
+        },
+        "Passion Mojito": {
+          "name": "百香果莫吉托",
+          "desc": "白朗姆酒、百香果果泥、薄荷"
+        },
+        "Whiskey Sour": {
+          "name": "威士忌酸",
+          "desc": "波本威士忌、新鲜柠檬、糖浆"
+        },
+        "Long Island Iced Tea": {
+          "name": "长岛冰茶",
+          "desc": "伏特加、金酒、龙舌兰、白朗姆酒、橙皮利口酒、青柠"
+        },
+        "Negroni": {
+          "name": "内格罗尼",
+          "desc": "金酒、金巴利、马天尼红味美思"
+        },
+        "Cosmopolitan": {
+          "name": "大都会",
+          "desc": "伏特加、君度、蔓越莓汁、青柠"
+        },
+        "Margarita": {
+          "name": "玛格丽特",
+          "desc": "龙舌兰、橙皮利口酒、青柠汁"
+        },
+        "Espresso Martini": {
+          "name": "浓缩咖啡马提尼",
+          "desc": "伏特加、咖啡、浓缩咖啡"
+        },
+        "Pornstar Martini": {
+          "name": "激情马提尼",
+          "desc": "伏特加、百香果果泥、柠檬"
+        },
+        "Aperol Spritz": {
+          "name": "阿佩罗气泡酒",
+          "desc": "阿佩罗、普罗塞克、苏打水"
+        },
+        "Hugo Spritz": {
+          "name": "雨果气泡酒",
+          "desc": "圣日耳曼接骨木花利口酒、普罗塞克、苏打水、薄荷"
+        },
+        "Pina Colada": {
+          "name": "椰林飘香",
+          "desc": "白朗姆酒、马利宝、椰子奶油、菠萝汁"
+        },
+        "Lynchburg Lemonade": {
+          "name": "林奇堡柠檬水",
+          "desc": "杰克丹尼、橙皮利口酒、青柠、柠檬水"
+        },
+        "Jäger Bomb": {
+          "name": "野格炸弹",
+          "desc": "野格、红牛"
+        },
+        "Sex on the Beach": {
+          "name": "性感海滩",
+          "desc": "伏特加、蜜桃利口酒、蔓越莓汁"
+        },
+        "NOX Special": {
+          "name": "NOX 特调",
+          "desc": "调酒师特制配方"
+        }
+      }
+    },
+    "alkolsuz-kokteyller": {
+      "title": "无酒精鸡尾酒",
+      "subtitle": "杯",
+      "items": {
+        "Virgin Mojito": {
+          "name": "无酒精莫吉托",
+          "desc": "青柠、薄荷、糖浆、苏打水"
+        },
+        "Virgin Strawberry Mojito": {
+          "name": "无酒精草莓莫吉托",
+          "desc": "草莓、青柠、糖浆、苏打水"
+        },
+        "Virgin Pina Colada": {
+          "name": "无酒精椰林飘香",
+          "desc": "菠萝汁、椰子奶油"
+        },
+        "Virgin Sex on the Beach": {
+          "name": "无酒精性感海滩",
+          "desc": "橙汁、蜜桃果泥、蔓越莓汁"
+        },
+        "Berry Lemonade": {
+          "name": "浆果柠檬水",
+          "desc": "森林浆果果泥、柠檬汁、糖浆、苏打水"
+        },
+        "Tropical Sunset": {
+          "name": "热带日落",
+          "desc": "橙汁、菠萝汁、红石榴糖浆"
+        }
+      }
+    },
+    "shotlar": {
+      "title": "烈酒杯",
+      "subtitle": "个",
+      "items": {
+        "Tekila": {
+          "name": "龙舌兰"
+        },
+        "Cin": {
+          "name": "金酒"
+        },
+        "Sambuca": {
+          "name": "桑布卡"
+        },
+        "Rakı": {
+          "name": "土耳其茴香酒"
+        }
+      }
+    },
+    "biralar": {
+      "title": "啤酒",
+      "subtitle": "33 cl"
+    },
+    "viski": {
+      "title": "威士忌",
+      "subtitle": "瓶装 70 cl"
+    },
+    "votka": {
+      "title": "伏特加",
+      "subtitle": "瓶装 70 cl"
+    },
+    "cin": {
+      "title": "金酒",
+      "subtitle": "杯"
+    },
+    "rom": {
+      "title": "朗姆酒",
+      "subtitle": "杯"
+    },
+    "tekila": {
+      "title": "龙舌兰",
+      "subtitle": "杯"
+    },
+    "likorler": {
+      "title": "利口酒",
+      "subtitle": "杯"
+    },
+    "vermut-brandy": {
+      "title": "味美思与白兰地",
+      "subtitle": "杯"
+    },
+    "sampanyalar": {
+      "title": "香槟",
+      "subtitle": "瓶装"
+    },
+    "icecekler": {
+      "title": "饮品",
+      "subtitle": "个",
+      "items": {
+        "Kola": {
+          "name": "可乐"
+        },
+        "Kola Zero": {
+          "name": "零度可乐"
+        },
+        "Fanta": {
+          "name": "芬达"
+        },
+        "Meyve Suyu": {
+          "name": "果汁"
+        },
+        "Soda": {
+          "name": "苏打水"
+        },
+        "Su": {
+          "name": "水"
+        }
+      }
+    },
+    "atistirmaliklar": {
+      "title": "零食",
+      "subtitle": "",
+      "items": {
+        "Patates Kızartması": {
+          "name": "炸薯条"
+        },
+        "Nugget": {
+          "name": "鸡块"
+        },
+        "Çıtır Tavuk Sepeti": {
+          "name": "香脆鸡柳篮",
+          "desc": "裹粉鸡块、炸薯条、牧场酱"
+        },
+        "Sosis Sepeti": {
+          "name": "香肠篮",
+          "desc": "烤香肠、炸薯条"
+        },
+        "Bira Tabağı": {
+          "name": "啤酒拼盘"
+        },
+        "İki Kişilik Paylaşım Tabağı": {
+          "name": "双人分享拼盘",
+          "desc": "炸薯条、鸡块、香脆鸡柳、香肠、洋葱圈、各式坚果、腌菜，配烧烤酱和牧场酱、番茄酱、蛋黄酱"
+        },
+        "Karışık Çerez Tabağı": {
+          "name": "混合坚果拼盘"
+        },
+        "Tuzlu Fıstık": {
+          "name": "咸味花生"
+        },
+        "Cips": {
+          "name": "薯片"
+        },
+        "Meyve Tabağı": {
+          "name": "水果拼盘",
+          "desc": "精选新鲜时令水果精心制作，摆盘精美"
+        }
+      }
+    },
+    "wrap-fajita": {
+      "title": "卷饼与法士达",
+      "subtitle": "",
+      "items": {
+        "Tavuk Fajita Wrap": {
+          "name": "鸡肉法士达卷饼",
+          "desc": "腌制鸡肉、彩椒、洋葱、切达奶酪、特制法士达酱，配炸薯条"
+        },
+        "Et Fajita Wrap": {
+          "name": "牛肉法士达卷饼",
+          "desc": "腌制牛肉、彩椒、洋葱、切达奶酪、特制法士达酱，配炸薯条"
+        }
+      }
+    },
+    "kahvalti": {
+      "title": "早餐",
+      "subtitle": "",
+      "items": {
+        "Serpme Kahvaltı": {
+          "name": "丰盛早餐拼盘",
+          "desc": "白奶酪、卡沙尔奶酪、黑橄榄与绿橄榄、番茄、黄瓜、时令蔬菜、蜂蜜、黄油、各式果酱、能多益巧克力酱、水煮蛋、面包篮、芝麻圈面包、茶"
+        },
+        "Tabak Kahvaltı": {
+          "name": "早餐盘",
+          "desc": "白奶酪、卡沙尔奶酪、黑橄榄与绿橄榄、番茄、黄瓜、蜂蜜、黄油、果酱、面包"
+        },
+        "Sahanda Yumurta": {
+          "name": "煎蛋",
+          "desc": "2个鸡蛋，用黄油煎制，配面包"
+        },
+        "Sucuklu Yumurta": {
+          "name": "土耳其香肠煎蛋",
+          "desc": "2个鸡蛋，配牛肉香肠和黄油煎制，配面包"
+        },
+        "Sucuk Tava": {
+          "name": "香肠铁板",
+          "desc": "烤牛肉香肠，配番茄、青椒和面包"
+        },
+        "Menemen": {
+          "name": "土耳其番茄炒蛋",
+          "desc": "用番茄、辣椒、洋葱和鸡蛋烹制，配面包"
+        }
+      }
+    },
+    "tostlar": {
+      "title": "烤吐司",
+      "subtitle": "",
+      "items": {
+        "Karışık Tost": {
+          "name": "混合烤吐司",
+          "desc": "卡沙尔奶酪、牛肉香肠、萨拉米、番茄"
+        },
+        "Kaşarlı Tost": {
+          "name": "奶酪烤吐司",
+          "desc": "卡沙尔奶酪、牛肉香肠、萨拉米、番茄"
+        },
+        "Sucuklu Tost": {
+          "name": "香肠烤吐司",
+          "desc": "牛肉香肠、卡沙尔奶酪"
+        }
+      }
+    },
+    "burgerler": {
+      "title": "汉堡",
+      "subtitle": "配炸薯条",
+      "items": {
+        "Hamburger": {
+          "name": "汉堡包",
+          "desc": "150克牛肉汉堡肉饼、生菜、番茄、腌黄瓜、洋葱、特制汉堡酱"
+        },
+        "Cheeseburger": {
+          "name": "芝士汉堡",
+          "desc": "150克牛肉汉堡肉饼、切达奶酪、生菜、番茄、腌黄瓜、洋葱、特制汉堡酱"
+        }
+      }
+    },
+    "makarnalar": {
+      "title": "意面",
+      "subtitle": "",
+      "items": {
+        "Penne Arrabbiata": {
+          "desc": "辣番茄酱、大蒜、罗勒"
+        },
+        "Spaghetti Bolognese": {
+          "desc": "肉酱、番茄、洋葱、香料、帕玛森奶酪"
+        },
+        "Cream Mushroom Spaghetti": {
+          "name": "奶油蘑菇意面",
+          "desc": "奶油蘑菇酱、帕玛森奶酪、罗勒"
+        }
+      }
+    },
+    "salatalar": {
+      "title": "沙拉",
+      "subtitle": "",
+      "items": {
+        "Ton Balıklı Salata": {
+          "name": "金枪鱼沙拉",
+          "desc": "生菜、金枪鱼、玉米、橄榄、番茄、黄瓜、柠檬酱汁"
+        },
+        "Mevsim Salata": {
+          "name": "时令沙拉",
+          "desc": "时令蔬菜、番茄、胡萝卜、玉米、柠檬酱汁"
+        },
+        "Sezar Salata": {
+          "name": "凯撒沙拉",
+          "desc": "生菜、鸡肉、帕玛森奶酪、面包丁、凯撒酱"
+        }
+      }
+    },
+    "tatlilar": {
+      "title": "甜点",
+      "subtitle": "",
+      "items": {
+        "Limonlu Cheesecake": {
+          "name": "柠檬芝士蛋糕"
+        },
+        "Frambuazlı Cheesecake": {
+          "name": "覆盆子芝士蛋糕"
+        }
+      }
+    },
+    "sicak-icecekler": {
+      "title": "热饮",
+      "subtitle": "个",
+      "items": {
+        "Türk Kahvesi": {
+          "name": "土耳其咖啡"
+        },
+        "Americano": {
+          "name": "美式咖啡"
+        },
+        "Double Espresso": {
+          "name": "双份浓缩咖啡"
+        },
+        "Cappuccino": {
+          "name": "卡布奇诺"
+        },
+        "Latte": {
+          "name": "拿铁"
+        },
+        "Sıcak Çikolata": {
+          "name": "热巧克力"
+        },
+        "Çay": {
+          "name": "茶"
+        }
+      }
+    }
+  }
+}

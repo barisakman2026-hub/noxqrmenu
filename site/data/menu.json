@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "title": "NOX Lounge — Menü",
+    "tagline": "GECE KULÜBÜ · QR MENÜ",
+    "instagram": "https://www.instagram.com/clubnoxlounge/",
+    "instagramHandle": "@clubnoxlounge",
+    "updated": "2026-08-13"
+  },
+  "groups": [
+    { "id": "alkollu", "title": "Alkollü İçecekler" },
+    { "id": "alkolsuz", "title": "Alkolsüz İçecekler" },
+    { "id": "aperatif", "title": "Aperatifler" },
+    { "id": "ana-yemek", "title": "Ana Yemekler" },
+    { "id": "tatli", "title": "Tatlılar" }
+  ],
+  "sections": [
+    {
+      "id": "kokteyller",
+      "group": "alkollu",
+      "title": "Kokteyller",
+      "subtitle": "İmza kokteyller · Bardak",
+      "items": [
+        { "name": "Mojito", "price": 600, "desc": "Beyaz rom, taze nane, lime, şeker şurubu, soda" },
+        { "name": "Passion Mojito", "price": 600, "desc": "Beyaz rom, passion fruit püresi, nane" },
+        { "name": "Whiskey Sour", "price": 600, "desc": "Burbon, taze limon, şeker şurubu" },
+        { "name": "Long Island Iced Tea", "price": 600, "desc": "Votka, cin, tekila, beyaz rom, triple sec, lime" },
+        { "name": "Negroni", "price": 600, "desc": "Cin, Campari, Martini Rosso" },
+        { "name": "Cosmopolitan", "price": 600, "desc": "Votka, Cointreau, cranberry suyu, lime" },
+        { "name": "Margarita", "price": 600, "desc": "Tekila, triple sec, lime suyu" },
+        { "name": "Espresso Martini", "price": 600, "desc": "Votka, kahve, espresso" },
+        { "name": "Pornstar Martini", "price": 600, "desc": "Votka, passion fruit püresi, limon" },
+        { "name": "Aperol Spritz", "price": 600, "desc": "Aperol, Prosecco, soda" },
+        { "name": "Hugo Spritz", "price": 600, "desc": "St. Germain, Prosecco, soda, nane" },
+        { "name": "Pina Colada", "price": 600, "desc": "Beyaz rom, Malibu, hindistan cevizi kreması, ananas suyu" },
+        { "name": "Lynchburg Lemonade", "price": 600, "desc": "Jack Daniel's, triple sec, lime, limonata" },
+        { "name": "Jäger Bomb", "price": 600, "desc": "Jägermeister, Red Bull" },
+        { "name": "Sex on the Beach", "price": 600, "desc": "Votka, peach schnapps, cranberry suyu" },
+        { "name": "NOX Special", "price": 600, "desc": "Barmenin özel tarifi" }
+      ]
+    },
+    {
+      "id": "alkolsuz-kokteyller",
+      "group": "alkolsuz",
+      "title": "Alkolsüz Kokteyller",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "Virgin Mojito", "price": 500, "desc": "Lime, nane, şeker şurubu, soda" },
+        { "name": "Virgin Strawberry Mojito", "price": 500, "desc": "Çilek, lime, şeker şurubu, soda" },
+        { "name": "Virgin Pina Colada", "price": 500, "desc": "Ananas suyu, hindistan cevizi kreması" },
+        { "name": "Virgin Sex on the Beach", "price": 500, "desc": "Portakal suyu, şeftali püresi, cranberry suyu" },
+        { "name": "Berry Lemonade", "price": 500, "desc": "Orman meyveleri püresi, limon suyu, şeker şurubu, soda" },
+        { "name": "Tropical Sunset", "price": 500, "desc": "Portakal suyu, ananas suyu, grenadin şurubu" }
+      ]
+    },
+    {
+      "id": "shotlar",
+      "group": "alkollu",
+      "title": "Shotlar",
+      "subtitle": "Adet",
+      "items": [
+        { "name": "Tekila", "price": 400 },
+        { "name": "Cin", "price": 400 },
+        { "name": "Sambuca", "price": 350 },
+        { "name": "Rakı", "price": 350 },
+        { "name": "Jägermeister", "price": 400 }
+      ]
+    },
+    {
+      "id": "biralar",
+      "group": "alkollu",
+      "title": "Biralar",
+      "subtitle": "33 cl",
+      "items": [
+        { "name": "Tuborg Gold", "price": 350, "note": "33 cl" },
+        { "name": "Carlsberg", "price": 450, "note": "33 cl" },
+        { "name": "Beck's", "price": 450, "note": "33 cl" },
+        { "name": "Bud", "price": 450, "note": "33 cl" },
+        { "name": "Müller", "price": 450, "note": "33 cl" },
+        { "name": "Corona", "price": 450, "note": "33 cl" }
+      ]
+    },
+    {
+      "id": "viski",
+      "group": "alkollu",
+      "title": "Viski",
+      "subtitle": "Şişe 70 cl",
+      "items": [
+        { "name": "Jack Daniel's", "price": 8000, "note": "Şişe" },
+        { "name": "Gentleman Jack", "price": 6000, "note": "Şişe" },
+        { "name": "Jim Beam", "price": 5000, "note": "Şişe" },
+        { "name": "Jameson", "price": 5000, "note": "Şişe" },
+        { "name": "Chivas Regal 12", "price": 9000, "note": "Şişe" },
+        { "name": "Johnnie Walker Red Label", "price": 5500, "note": "Şişe" },
+        { "name": "Johnnie Walker Black Label", "price": 6000, "note": "Şişe" },
+        { "name": "Green Mark", "price": 7000, "note": "Şişe" },
+        { "name": "The Famous Grouse", "price": 5000, "note": "Şişe" },
+        { "name": "Johnnie Walker", "price": 8000, "note": "Şişe" }
+      ]
+    },
+    {
+      "id": "votka",
+      "group": "alkollu",
+      "title": "Votka",
+      "subtitle": "Şişe 70 cl",
+      "items": [
+        { "name": "Belvedere", "price": 12000, "note": "Şişe" },
+        { "name": "Grey Goose", "price": 7700, "note": "Şişe" },
+        { "name": "Absolut", "price": 4500, "note": "Şişe" },
+        { "name": "Smirnoff", "price": 4400, "note": "Şişe" },
+        { "name": "Finlandia", "price": 4400, "note": "Şişe" }
+      ]
+    },
+    {
+      "id": "cin",
+      "group": "alkollu",
+      "title": "Cin",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "Hendrick's", "price": 650 },
+        { "name": "Bombay", "price": 500 },
+        { "name": "Gordon's", "price": 450 },
+        { "name": "Beefeater", "price": 450 },
+        { "name": "Beefeater Pink", "price": 450 },
+        { "name": "Tanqueray London", "price": 550 }
+      ]
+    },
+    {
+      "id": "rom",
+      "group": "alkollu",
+      "title": "Rom",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "Havana Club", "price": 500 },
+        { "name": "Bacardi", "price": 500 },
+        { "name": "Captain Morgan", "price": 400 }
+      ]
+    },
+    {
+      "id": "tekila",
+      "group": "alkollu",
+      "title": "Tekila",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "Olmeca Silver", "price": 350 },
+        { "name": "El Jimador", "price": 350 }
+      ]
+    },
+    {
+      "id": "likorler",
+      "group": "alkollu",
+      "title": "Likörler",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "St. Germain", "price": 500 },
+        { "name": "Disaronno", "price": 500 },
+        { "name": "Kardinal Melon", "price": 500 },
+        { "name": "Jägermeister", "price": 500 },
+        { "name": "Chambord", "price": 500 },
+        { "name": "Safari", "price": 500 },
+        { "name": "Malibu", "price": 500 },
+        { "name": "Archer's", "price": 500 },
+        { "name": "Passoã", "price": 500 },
+        { "name": "Kahlúa", "price": 500 },
+        { "name": "Bailey's", "price": 500 },
+        { "name": "Aperol", "price": 500 }
+      ]
+    },
+    {
+      "id": "vermut-brandy",
+      "group": "alkollu",
+      "title": "Vermut & Brandy",
+      "subtitle": "Bardak",
+      "items": [
+        { "name": "Martini Rosso", "price": 500 },
+        { "name": "Martini Bianco", "price": 500 },
+        { "name": "Martini Extra Dry", "price": 500 },
+        { "name": "Metaxa", "price": 500 },
+        { "name": "Dutch Los Napoleon", "price": 450 }
+      ]
+    },
+    {
+      "id": "sampanyalar",
+      "group": "alkollu",
+      "title": "Şampanyalar",
+      "subtitle": "Şişe",
+      "items": [
+        { "name": "Moët & Chandon Impérial", "price": 12000, "note": "Şişe" },
+        { "name": "Moët Ice Impérial", "price": 12500, "note": "Şişe" },
+        { "name": "Chandon Brut", "price": 10000, "note": "Şişe" }
+      ]
+    },
+    {
+      "id": "icecekler",
+      "group": "alkolsuz",
+      "title": "İçecekler",
+      "subtitle": "Adet",
+      "items": [
+        { "name": "Kola", "price": 300 },
+        { "name": "Kola Zero", "price": 300 },
+        { "name": "Fanta", "price": 300 },
+        { "name": "Fuse Tea", "price": 150 },
+        { "name": "Meyve Suyu", "price": 150 },
+        { "name": "Soda", "price": 100 },
+        { "name": "Red Bull", "price": 350 },
+        { "name": "Su", "price": 100 }
+      ]
+    },
+    {
+      "id": "atistirmaliklar",
+      "group": "aperatif",
+      "title": "Atıştırmalıklar",
+      "subtitle": "",
+      "items": [
+        { "name": "Patates Kızartması", "price": 200 },
+        { "name": "Nugget", "price": 200 },
+        { "name": "Çıtır Tavuk Sepeti", "price": 260, "desc": "Pane tavuk parçaları, patates kızartması, ranch sos" },
+        { "name": "Sosis Sepeti", "price": 250, "desc": "Izgara sosis, patates kızartması" },
+        { "name": "Bira Tabağı", "price": 350 },
+        { "name": "İki Kişilik Paylaşım Tabağı", "price": 450, "desc": "Patates kızartması, nugget, çıtır tavuk, sosis, soğan halkası, çerez çeşitleri, turşu — barbekü ve ranch sos, ketçap, mayonez ile" },
+        { "name": "Karışık Çerez Tabağı", "price": 250 },
+        { "name": "Tuzlu Fıstık", "price": 200 },
+        { "name": "Cips", "price": 150 },
+        { "name": "Meyve Tabağı", "price": 450, "desc": "Taze ve mevsim meyvelerinden özenle hazırlanmış, göz alıcı sunum" }
+      ]
+    },
+    {
+      "id": "wrap-fajita",
+      "group": "aperatif",
+      "title": "Wrap & Fajita",
+      "subtitle": "",
+      "items": [
+        { "name": "Tavuk Fajita Wrap", "price": 400, "desc": "Marine tavuk, renkli biber, soğan, cheddar peyniri, özel fajita sosu — patates kızartması ile servis edilir" },
+        { "name": "Et Fajita Wrap", "price": 500, "desc": "Marine dana eti, renkli biber, soğan, cheddar peyniri, özel fajita sosu — patates kızartması ile servis edilir" }
+      ]
+    },
+    {
+      "id": "kahvalti",
+      "group": "ana-yemek",
+      "title": "Kahvaltı",
+      "subtitle": "",
+      "items": [
+        { "name": "Serpme Kahvaltı", "price": 750, "desc": "Beyaz peynir, kaşar peyniri, siyah & yeşil zeytin, domates, salatalık, mevsim yeşillikleri, bal, tereyağı, reçel çeşitleri, Nutella, haşlanmış yumurta, ekmek sepeti, simit, çay" },
+        { "name": "Tabak Kahvaltı", "price": 450, "desc": "Beyaz peynir, kaşar peyniri, siyah & yeşil zeytin, domates, salatalık, bal, tereyağı, reçel, ekmek" },
+        { "name": "Sahanda Yumurta", "price": 200, "desc": "2 adet yumurta, tereyağı ile hazırlanır — ekmek ile servis edilir" },
+        { "name": "Sucuklu Yumurta", "price": 250, "desc": "2 adet yumurta, dana sucuk ve tereyağı ile hazırlanır — ekmek ile servis edilir" },
+        { "name": "Sucuk Tava", "price": 250, "desc": "Izgara dana sucuk, domates, yeşil biber ve ekmek ile servis edilir" },
+        { "name": "Menemen", "price": 350, "desc": "Domates, biber, soğan ve yumurta ile hazırlanır — ekmek ile servis edilir" }
+      ]
+    },
+    {
+      "id": "tostlar",
+      "group": "aperatif",
+      "title": "Tostlar",
+      "subtitle": "",
+      "items": [
+        { "name": "Karışık Tost", "price": 350, "desc": "Kaşar peyniri, dana sucuk, salam, domates" },
+        { "name": "Kaşarlı Tost", "price": 300, "desc": "Kaşar peyniri, dana sucuk, salam, domates" },
+        { "name": "Sucuklu Tost", "price": 350, "desc": "Dana sucuk, kaşar peyniri" }
+      ]
+    },
+    {
+      "id": "burgerler",
+      "group": "ana-yemek",
+      "title": "Burgerler",
+      "subtitle": "Patates kızartması ile",
+      "items": [
+        { "name": "Hamburger", "price": 300, "desc": "150 gr dana burger köftesi, marul, domates, turşu, soğan, özel burger sosu" },
+        { "name": "Cheeseburger", "price": 380, "desc": "150 gr dana burger köftesi, cheddar peyniri, marul, domates, turşu, soğan, özel burger sosu" }
+      ]
+    },
+    {
+      "id": "makarnalar",
+      "group": "ana-yemek",
+      "title": "Makarnalar",
+      "subtitle": "",
+      "items": [
+        { "name": "Penne Arrabbiata", "price": 350, "desc": "Acılı domates sos, sarımsak, fesleğen" },
+        { "name": "Spaghetti Bolognese", "price": 450, "desc": "Kıyma sos, domates, soğan, baharatlar, parmesan" },
+        { "name": "Cream Mushroom Spaghetti", "price": 350, "desc": "Kremalı mantar sos, parmesan, fesleğen" }
+      ]
+    },
+    {
+      "id": "salatalar",
+      "group": "ana-yemek",
+      "title": "Salatalar",
+      "subtitle": "",
+      "items": [
+        { "name": "Ton Balıklı Salata", "price": 300, "desc": "Marul, ton balığı, mısır, zeytin, domates, salatalık, limon sosu" },
+        { "name": "Mevsim Salata", "price": 350, "desc": "Mevsim yeşillikleri, domates, havuç, mısır, limon sosu" },
+        { "name": "Sezar Salata", "price": 300, "desc": "Marul, tavuk, parmesan, kruton, sezar sos" }
+      ]
+    },
+    {
+      "id": "tatlilar",
+      "group": "tatli",
+      "title": "Tatlılar",
+      "subtitle": "",
+      "items": [
+        { "name": "Devil's Cheesecake", "price": 400 },
+        { "name": "Limonlu Cheesecake", "price": 400 },
+        { "name": "Frambuazlı Cheesecake", "price": 400 }
+      ]
+    },
+    {
+      "id": "sicak-icecekler",
+      "group": "alkolsuz",
+      "title": "Sıcak İçecekler",
+      "subtitle": "Adet",
+      "items": [
+        { "name": "Türk Kahvesi", "price": 150 },
+        { "name": "Americano", "price": 200 },
+        { "name": "Double Espresso", "price": 200 },
+        { "name": "Cappuccino", "price": 250 },
+        { "name": "Latte", "price": 200 },
+        { "name": "Sıcak Çikolata", "price": 250 },
+        { "name": "Çay", "price": 100 }
+      ]
+    }
+  ]
+}

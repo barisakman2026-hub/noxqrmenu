@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "tagline": "ナイトクラブ · QRメニュー"
+  },
+  "ui": {
+    "follow": "フォローする",
+    "igView": "Instagramで見る",
+    "footerTag": "楽しい時間のおいしいお供",
+    "fxNote": "外貨換算はトルコ中央銀行の売却レートによる",
+    "skipIntro": "メニューへ"
+  },
+  "groups": {
+    "alkollu": "アルコール飲料",
+    "alkolsuz": "ノンアルコール飲料",
+    "aperatif": "スナック",
+    "ana-yemek": "メインディッシュ",
+    "tatli": "デザート"
+  },
+  "notes": {
+    "Şişe": "瓶",
+    "33 cl": "33 cl"
+  },
+  "sections": {
+    "kokteyller": {
+      "title": "カクテル",
+      "subtitle": "シグネチャーカクテル · グラス",
+      "items": {
+        "Mojito": {
+          "name": "モヒート",
+          "desc": "ホワイトラム、フレッシュミント、ライム、シュガーシロップ、ソーダ"
+        },
+        "Passion Mojito": {
+          "name": "パッションモヒート",
+          "desc": "ホワイトラム、パッションフルーツピューレ、ミント"
+        },
+        "Whiskey Sour": {
+          "name": "ウイスキーサワー",
+          "desc": "バーボン、フレッシュレモン、シュガーシロップ"
+        },
+        "Long Island Iced Tea": {
+          "name": "ロングアイランドアイスティー",
+          "desc": "ウォッカ、ジン、テキーラ、ホワイトラム、トリプルセック、ライム"
+        },
+        "Negroni": {
+          "name": "ネグローニ",
+          "desc": "ジン、カンパリ、マルティーニ・ロッソ"
+        },
+        "Cosmopolitan": {
+          "name": "コスモポリタン",
+          "desc": "ウォッカ、コアントロー、クランベリージュース、ライム"
+        },
+        "Margarita": {
+          "name": "マルガリータ",
+          "desc": "テキーラ、トリプルセック、ライムジュース"
+        },
+        "Espresso Martini": {
+          "name": "エスプレッソマティーニ",
+          "desc": "ウォッカ、コーヒー、エスプレッソ"
+        },
+        "Pornstar Martini": {
+          "name": "ポーンスターマティーニ",
+          "desc": "ウォッカ、パッションフルーツピューレ、レモン"
+        },
+        "Aperol Spritz": {
+          "name": "アペロールスプリッツ",
+          "desc": "アペロール、プロセッコ、ソーダ"
+        },
+        "Hugo Spritz": {
+          "name": "ユーゴスプリッツ",
+          "desc": "サンジェルマン、プロセッコ、ソーダ、ミント"
+        },
+        "Pina Colada": {
+          "name": "ピニャコラーダ",
+          "desc": "ホワイトラム、マリブ、ココナッツクリーム、パイナップルジュース"
+        },
+        "Lynchburg Lemonade": {
+          "name": "リンチバーグレモネード",
+          "desc": "ジャックダニエル、トリプルセック、ライム、レモネード"
+        },
+        "Jäger Bomb": {
+          "name": "イエガーボム",
+          "desc": "イエガーマイスター、レッドブル"
+        },
+        "Sex on the Beach": {
+          "name": "セックスオンザビーチ",
+          "desc": "ウォッカ、ピーチシュナップス、クランベリージュース"
+        },
+        "NOX Special": {
+          "name": "NOXスペシャル",
+          "desc": "バーテンダーのスペシャルレシピ"
+        }
+      }
+    },
+    "alkolsuz-kokteyller": {
+      "title": "ノンアルコールカクテル",
+      "subtitle": "グラス",
+      "items": {
+        "Virgin Mojito": {
+          "name": "ヴァージンモヒート",
+          "desc": "ライム、ミント、シュガーシロップ、ソーダ"
+        },
+        "Virgin Strawberry Mojito": {
+          "name": "ヴァージンストロベリーモヒート",
+          "desc": "イチゴ、ライム、シュガーシロップ、ソーダ"
+        },
+        "Virgin Pina Colada": {
+          "name": "ヴァージンピニャコラーダ",
+          "desc": "パイナップルジュース、ココナッツクリーム"
+        },
+        "Virgin Sex on the Beach": {
+          "name": "ヴァージンセックスオンザビーチ",
+          "desc": "オレンジジュース、ピーチピューレ、クランベリージュース"
+        },
+        "Berry Lemonade": {
+          "name": "ベリーレモネード",
+          "desc": "ベリーミックスピューレ、レモンジュース、シュガーシロップ、ソーダ"
+        },
+        "Tropical Sunset": {
+          "name": "トロピカルサンセット",
+          "desc": "オレンジジュース、パイナップルジュース、グレナデンシロップ"
+        }
+      }
+    },
+    "shotlar": {
+      "title": "ショット",
+      "subtitle": "個",
+      "items": {
+        "Tekila": {
+          "name": "テキーラ"
+        },
+        "Cin": {
+          "name": "ジン"
+        },
+        "Sambuca": {
+          "name": "サンブーカ"
+        },
+        "Rakı": {
+          "name": "ラク"
+        }
+      }
+    },
+    "biralar": {
+      "title": "ビール",
+      "subtitle": "33 cl",
+      "items": {}
+    },
+    "viski": {
+      "title": "ウイスキー",
+      "subtitle": "瓶 70 cl",
+      "items": {}
+    },
+    "votka": {
+      "title": "ウォッカ",
+      "subtitle": "瓶 70 cl",
+      "items": {}
+    },
+    "cin": {
+      "title": "ジン",
+      "subtitle": "グラス",
+      "items": {}
+    },
+    "rom": {
+      "title": "ラム",
+      "subtitle": "グラス",
+      "items": {}
+    },
+    "tekila": {
+      "title": "テキーラ",
+      "subtitle": "グラス",
+      "items": {}
+    },
+    "likorler": {
+      "title": "リキュール",
+      "subtitle": "グラス",
+      "items": {}
+    },
+    "vermut-brandy": {
+      "title": "ベルモット & ブランデー",
+      "subtitle": "グラス",
+      "items": {}
+    },
+    "sampanyalar": {
+      "title": "シャンパン",
+      "subtitle": "瓶",
+      "items": {}
+    },
+    "icecekler": {
+      "title": "ドリンク",
+      "subtitle": "個",
+      "items": {
+        "Kola": {
+          "name": "コーラ"
+        },
+        "Kola Zero": {
+          "name": "コーラゼロ"
+        },
+        "Fanta": {
+          "name": "ファンタ"
+        },
+        "Meyve Suyu": {
+          "name": "フルーツジュース"
+        },
+        "Soda": {
+          "name": "ソーダ"
+        },
+        "Su": {
+          "name": "水"
+        }
+      }
+    },
+    "atistirmaliklar": {
+      "title": "おつまみ",
+      "subtitle": "",
+      "items": {
+        "Patates Kızartması": {
+          "name": "フライドポテト"
+        },
+        "Nugget": {
+          "name": "ナゲット"
+        },
+        "Çıtır Tavuk Sepeti": {
+          "name": "クリスピーチキンバスケット",
+          "desc": "衣付きチキン、フライドポテト、ランチソース"
+        },
+        "Sosis Sepeti": {
+          "name": "ソーセージバスケット",
+          "desc": "グリルソーセージ、フライドポテト"
+        },
+        "Bira Tabağı": {
+          "name": "ビールプレート"
+        },
+        "İki Kişilik Paylaşım Tabağı": {
+          "name": "2人用シェアプレート",
+          "desc": "フライドポテト、ナゲット、クリスピーチキン、ソーセージ、オニオンリング、ミックスナッツ、ピクルス — バーベキューソース、ランチソース、ケチャップ、マヨネーズ添え"
+        },
+        "Karışık Çerez Tabağı": {
+          "name": "ミックスナッツプレート"
+        },
+        "Tuzlu Fıstık": {
+          "name": "塩味ピーナッツ"
+        },
+        "Cips": {
+          "name": "ポテトチップス"
+        },
+        "Meyve Tabağı": {
+          "name": "フルーツプレート",
+          "desc": "新鮮な季節のフルーツを丁寧に盛り付けた、目を引くプレゼンテーション"
+        }
+      }
+    },
+    "wrap-fajita": {
+      "title": "ラップ & ファヒータ",
+      "subtitle": "",
+      "items": {
+        "Tavuk Fajita Wrap": {
+          "name": "チキンファヒータラップ",
+          "desc": "マリネチキン、カラーピーマン、玉ねぎ、チェダーチーズ、特製ファヒータソース — フライドポテト付き"
+        },
+        "Et Fajita Wrap": {
+          "name": "ビーフファヒータラップ",
+          "desc": "マリネビーフ、カラーピーマン、玉ねぎ、チェダーチーズ、特製ファヒータソース — フライドポテト付き"
+        }
+      }
+    },
+    "kahvalti": {
+      "title": "朝食",
+      "subtitle": "",
+      "items": {
+        "Serpme Kahvaltı": {
+          "name": "トルコ風朝食プレート",
+          "desc": "ホワイトチーズ、カシャールチーズ、黒＆緑オリーブ、トマト、キュウリ、季節の野菜、はちみつ、バター、各種ジャム、ヌテラ、ゆで卵、パンバスケット、シミット、紅茶"
+        },
+        "Tabak Kahvaltı": {
+          "name": "プレート朝食",
+          "desc": "ホワイトチーズ、カシャールチーズ、黒＆緑オリーブ、トマト、キュウリ、はちみつ、バター、ジャム、パン"
+        },
+        "Sahanda Yumurta": {
+          "name": "目玉焼き",
+          "desc": "卵2個をバターで調理 — パン付き"
+        },
+        "Sucuklu Yumurta": {
+          "name": "スジュク入り目玉焼き",
+          "desc": "卵2個をビーフスジュクとバターで調理 — パン付き"
+        },
+        "Sucuk Tava": {
+          "name": "スジュクの鉄板焼き",
+          "desc": "グリルしたビーフスジュク、トマト、青唐辛子、パン付き"
+        },
+        "Menemen": {
+          "name": "メネメン",
+          "desc": "トマト、ピーマン、玉ねぎ、卵で調理 — パン付き"
+        }
+      }
+    },
+    "tostlar": {
+      "title": "ホットサンド",
+      "subtitle": "",
+      "items": {
+        "Karışık Tost": {
+          "name": "ミックスホットサンド",
+          "desc": "カシャールチーズ、ビーフスジュク、サラミ、トマト"
+        },
+        "Kaşarlı Tost": {
+          "name": "カシャールチーズホットサンド",
+          "desc": "カシャールチーズ、ビーフスジュク、サラミ、トマト"
+        },
+        "Sucuklu Tost": {
+          "name": "スジュクホットサンド",
+          "desc": "ビーフスジュク、カシャールチーズ"
+        }
+      }
+    },
+    "burgerler": {
+      "title": "バーガー",
+      "subtitle": "フライドポテト付き",
+      "items": {
+        "Hamburger": {
+          "name": "ハンバーガー",
+          "desc": "150gビーフパティ、レタス、トマト、ピクルス、玉ねぎ、特製バーガーソース"
+        },
+        "Cheeseburger": {
+          "name": "チーズバーガー",
+          "desc": "150gビーフパティ、チェダーチーズ、レタス、トマト、ピクルス、玉ねぎ、特製バーガーソース"
+        }
+      }
+    },
+    "makarnalar": {
+      "title": "パスタ",
+      "subtitle": "",
+      "items": {
+        "Penne Arrabbiata": {
+          "name": "ペンネ・アラビアータ",
+          "desc": "スパイシートマトソース、ニンニク、バジル"
+        },
+        "Spaghetti Bolognese": {
+          "name": "スパゲッティ・ボロネーゼ",
+          "desc": "ミートソース、トマト、玉ねぎ、スパイス、パルメザン"
+        },
+        "Cream Mushroom Spaghetti": {
+          "name": "クリームマッシュルームスパゲッティ",
+          "desc": "クリームマッシュルームソース、パルメザン、バジル"
+        }
+      }
+    },
+    "salatalar": {
+      "title": "サラダ",
+      "subtitle": "",
+      "items": {
+        "Ton Balıklı Salata": {
+          "name": "ツナサラダ",
+          "desc": "レタス、ツナ、コーン、オリーブ、トマト、キュウリ、レモンドレッシング"
+        },
+        "Mevsim Salata": {
+          "name": "季節のサラダ",
+          "desc": "季節の野菜、トマト、ニンジン、コーン、レモンドレッシング"
+        },
+        "Sezar Salata": {
+          "name": "シーザーサラダ",
+          "desc": "レタス、チキン、パルメザン、クルトン、シーザードレッシング"
+        }
+      }
+    },
+    "tatlilar": {
+      "title": "デザート",
+      "subtitle": "",
+      "items": {
+        "Limonlu Cheesecake": {
+          "name": "レモンチーズケーキ"
+        },
+        "Frambuazlı Cheesecake": {
+          "name": "ラズベリーチーズケーキ"
+        }
+      }
+    },
+    "sicak-icecekler": {
+      "title": "ホットドリンク",
+      "subtitle": "個",
+      "items": {
+        "Türk Kahvesi": {
+          "name": "トルココーヒー"
+        },
+        "Americano": {
+          "name": "アメリカーノ"
+        },
+        "Double Espresso": {
+          "name": "ダブルエスプレッソ"
+        },
+        "Cappuccino": {
+          "name": "カプチーノ"
+        },
+        "Latte": {
+          "name": "ラテ"
+        },
+        "Sıcak Çikolata": {
+          "name": "ホットチョコレート"
+        },
+        "Çay": {
+          "name": "紅茶"
+        }
+      }
+    }
+  }
+}

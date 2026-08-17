@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "tagline": "NACHTCLUB · QR-MENÜ"
+  },
+  "ui": {
+    "follow": "Folgen Sie uns",
+    "igView": "Auf Instagram ansehen",
+    "footerTag": "Die köstliche Begleitung schöner Momente",
+    "fxNote": "Fremdwährungsäquivalente zum TCMB-Verkaufskurs berechnet",
+    "skipIntro": "Zum Menü"
+  },
+  "groups": {
+    "alkollu": "Alkoholische Getränke",
+    "alkolsuz": "Alkoholfreie Getränke",
+    "aperatif": "Snacks",
+    "ana-yemek": "Hauptgerichte",
+    "tatli": "Desserts"
+  },
+  "notes": {
+    "Şişe": "Flasche",
+    "33 cl": "33 cl"
+  },
+  "sections": {
+    "kokteyller": {
+      "title": "Cocktails",
+      "subtitle": "Signature-Cocktails · Glas",
+      "items": {
+        "Mojito": {
+          "desc": "Weißer Rum, frische Minze, Limette, Zuckersirup, Soda"
+        },
+        "Passion Mojito": {
+          "desc": "Weißer Rum, Passionsfruchtpüree, Minze"
+        },
+        "Whiskey Sour": {
+          "desc": "Bourbon, frische Zitrone, Zuckersirup"
+        },
+        "Long Island Iced Tea": {
+          "desc": "Wodka, Gin, Tequila, weißer Rum, Triple Sec, Limette"
+        },
+        "Negroni": {
+          "desc": "Gin, Campari, Martini Rosso"
+        },
+        "Cosmopolitan": {
+          "desc": "Wodka, Cointreau, Cranberrysaft, Limette"
+        },
+        "Margarita": {
+          "desc": "Tequila, Triple Sec, Limettensaft"
+        },
+        "Espresso Martini": {
+          "desc": "Wodka, Kaffee, Espresso"
+        },
+        "Pornstar Martini": {
+          "desc": "Wodka, Passionsfruchtpüree, Zitrone"
+        },
+        "Aperol Spritz": {
+          "desc": "Aperol, Prosecco, Soda"
+        },
+        "Hugo Spritz": {
+          "desc": "St. Germain, Prosecco, Soda, Minze"
+        },
+        "Pina Colada": {
+          "desc": "Weißer Rum, Malibu, Kokoscreme, Ananassaft"
+        },
+        "Lynchburg Lemonade": {
+          "desc": "Jack Daniel's, Triple Sec, Limette, Limonade"
+        },
+        "Jäger Bomb": {
+          "desc": "Jägermeister, Red Bull"
+        },
+        "Sex on the Beach": {
+          "desc": "Wodka, Pfirsichlikör, Cranberrysaft"
+        },
+        "NOX Special": {
+          "desc": "Das Spezialrezept unseres Barkeepers"
+        }
+      }
+    },
+    "alkolsuz-kokteyller": {
+      "title": "Alkoholfreie Cocktails",
+      "subtitle": "Glas",
+      "items": {
+        "Virgin Mojito": {
+          "desc": "Limette, Minze, Zuckersirup, Soda"
+        },
+        "Virgin Strawberry Mojito": {
+          "desc": "Erdbeere, Limette, Zuckersirup, Soda"
+        },
+        "Virgin Pina Colada": {
+          "desc": "Ananassaft, Kokoscreme"
+        },
+        "Virgin Sex on the Beach": {
+          "desc": "Orangensaft, Pfirsichpüree, Cranberrysaft"
+        },
+        "Berry Lemonade": {
+          "desc": "Waldbeerenpüree, Zitronensaft, Zuckersirup, Soda"
+        },
+        "Tropical Sunset": {
+          "desc": "Orangensaft, Ananassaft, Grenadinesirup"
+        }
+      }
+    },
+    "shotlar": {
+      "title": "Shots",
+      "subtitle": "Stück",
+      "items": {
+        "Tekila": {
+          "name": "Tequila"
+        },
+        "Cin": {
+          "name": "Gin"
+        },
+        "Rakı": {
+          "name": "Raki"
+        }
+      }
+    },
+    "biralar": {
+      "title": "Biere",
+      "subtitle": "33 cl",
+      "items": {}
+    },
+    "viski": {
+      "title": "Whisky",
+      "subtitle": "Flasche 70 cl",
+      "items": {}
+    },
+    "votka": {
+      "title": "Wodka",
+      "subtitle": "Flasche 70 cl",
+      "items": {}
+    },
+    "cin": {
+      "title": "Gin",
+      "subtitle": "Glas",
+      "items": {}
+    },
+    "rom": {
+      "title": "Rum",
+      "subtitle": "Glas",
+      "items": {}
+    },
+    "tekila": {
+      "title": "Tequila",
+      "subtitle": "Glas",
+      "items": {}
+    },
+    "likorler": {
+      "title": "Liköre",
+      "subtitle": "Glas",
+      "items": {}
+    },
+    "vermut-brandy": {
+      "title": "Wermut & Brandy",
+      "subtitle": "Glas",
+      "items": {}
+    },
+    "sampanyalar": {
+      "title": "Champagner",
+      "subtitle": "Flasche",
+      "items": {}
+    },
+    "icecekler": {
+      "title": "Getränke",
+      "subtitle": "Stück",
+      "items": {
+        "Kola": {
+          "name": "Cola"
+        },
+        "Kola Zero": {
+          "name": "Cola Zero"
+        },
+        "Meyve Suyu": {
+          "name": "Fruchtsaft"
+        },
+        "Su": {
+          "name": "Wasser"
+        }
+      }
+    },
+    "atistirmaliklar": {
+      "title": "Snacks",
+      "subtitle": "",
+      "items": {
+        "Patates Kızartması": {
+          "name": "Pommes frites"
+        },
+        "Nugget": {
+          "name": "Nuggets"
+        },
+        "Çıtır Tavuk Sepeti": {
+          "name": "Knusprige Hähnchenkorb",
+          "desc": "Panierte Hähnchenstücke, Pommes frites, Ranch-Dressing"
+        },
+        "Sosis Sepeti": {
+          "name": "Wurstkorb",
+          "desc": "Gegrillte Würstchen, Pommes frites"
+        },
+        "Bira Tabağı": {
+          "name": "Bierteller"
+        },
+        "İki Kişilik Paylaşım Tabağı": {
+          "name": "Tellerteller für zwei Personen",
+          "desc": "Pommes frites, Nuggets, knuspriges Hähnchen, Würstchen, Zwiebelringe, verschiedene Snacks, eingelegtes Gemüse — mit Barbecue- und Ranch-Dressing, Ketchup, Mayonnaise"
+        },
+        "Karışık Çerez Tabağı": {
+          "name": "Gemischte Snackplatte"
+        },
+        "Tuzlu Fıstık": {
+          "name": "Gesalzene Erdnüsse"
+        },
+        "Cips": {
+          "name": "Chips"
+        },
+        "Meyve Tabağı": {
+          "name": "Obstteller",
+          "desc": "Sorgfältig aus frischen und saisonalen Früchten zubereitet, mit ansprechender Präsentation"
+        }
+      }
+    },
+    "wrap-fajita": {
+      "title": "Wrap & Fajita",
+      "subtitle": "",
+      "items": {
+        "Tavuk Fajita Wrap": {
+          "name": "Hähnchen-Fajita-Wrap",
+          "desc": "Mariniertes Hähnchen, bunte Paprika, Zwiebeln, Cheddar-Käse, spezielle Fajita-Sauce — mit Pommes frites serviert"
+        },
+        "Et Fajita Wrap": {
+          "name": "Rind-Fajita-Wrap",
+          "desc": "Mariniertes Rindfleisch, bunte Paprika, Zwiebeln, Cheddar-Käse, spezielle Fajita-Sauce — mit Pommes frites serviert"
+        }
+      }
+    },
+    "kahvalti": {
+      "title": "Frühstück",
+      "subtitle": "",
+      "items": {
+        "Serpme Kahvaltı": {
+          "name": "Reichhaltiges Frühstück",
+          "desc": "Weißkäse, Kasar-Käse, schwarze & grüne Oliven, Tomaten, Gurken, saisonales Grünzeug, Honig, Butter, verschiedene Marmeladen, Nutella, hartgekochtes Ei, Brotkorb, Simit, Tee"
+        },
+        "Tabak Kahvaltı": {
+          "name": "Frühstücksteller",
+          "desc": "Weißkäse, Kasar-Käse, schwarze & grüne Oliven, Tomaten, Gurken, Honig, Butter, Marmelade, Brot"
+        },
+        "Sahanda Yumurta": {
+          "name": "Spiegeleier",
+          "desc": "2 Eier, in Butter zubereitet — mit Brot serviert"
+        },
+        "Sucuklu Yumurta": {
+          "name": "Eier mit Sucuk",
+          "desc": "2 Eier, mit Rindersucuk und Butter zubereitet — mit Brot serviert"
+        },
+        "Sucuk Tava": {
+          "name": "Sucuk-Pfanne",
+          "desc": "Gegrillte Rindersucuk, mit Tomaten, grünen Paprika und Brot serviert"
+        },
+        "Menemen": {
+          "desc": "Mit Tomaten, Paprika, Zwiebeln und Eiern zubereitet — mit Brot serviert"
+        }
+      }
+    },
+    "tostlar": {
+      "title": "Toasts",
+      "subtitle": "",
+      "items": {
+        "Karışık Tost": {
+          "name": "Gemischter Toast",
+          "desc": "Kasar-Käse, Rindersucuk, Salami, Tomaten"
+        },
+        "Kaşarlı Tost": {
+          "name": "Toast mit Kasar-Käse",
+          "desc": "Kasar-Käse, Rindersucuk, Salami, Tomaten"
+        },
+        "Sucuklu Tost": {
+          "name": "Toast mit Sucuk",
+          "desc": "Rindersucuk, Kasar-Käse"
+        }
+      }
+    },
+    "burgerler": {
+      "title": "Burger",
+      "subtitle": "Mit Pommes frites serviert",
+      "items": {
+        "Hamburger": {
+          "desc": "150 g Rinderburger-Patty, Salat, Tomaten, eingelegtes Gemüse, Zwiebeln, spezielle Burgersauce"
+        },
+        "Cheeseburger": {
+          "desc": "150 g Rinderburger-Patty, Cheddar-Käse, Salat, Tomaten, eingelegtes Gemüse, Zwiebeln, spezielle Burgersauce"
+        }
+      }
+    },
+    "makarnalar": {
+      "title": "Pasta",
+      "subtitle": "",
+      "items": {
+        "Penne Arrabbiata": {
+          "desc": "Scharfe Tomatensauce, Knoblauch, Basilikum"
+        },
+        "Spaghetti Bolognese": {
+          "desc": "Hackfleischsauce, Tomaten, Zwiebeln, Gewürze, Parmesan"
+        },
+        "Cream Mushroom Spaghetti": {
+          "name": "Spaghetti mit Cremiger Pilzsauce",
+          "desc": "Cremige Pilzsauce, Parmesan, Basilikum"
+        }
+      }
+    },
+    "salatalar": {
+      "title": "Salate",
+      "subtitle": "",
+      "items": {
+        "Ton Balıklı Salata": {
+          "name": "Thunfischsalat",
+          "desc": "Salat, Thunfisch, Mais, Oliven, Tomaten, Gurken, Zitronendressing"
+        },
+        "Mevsim Salata": {
+          "name": "Saisonsalat",
+          "desc": "Saisonales Grünzeug, Tomaten, Karotten, Mais, Zitronendressing"
+        },
+        "Sezar Salata": {
+          "name": "Caesar Salad",
+          "desc": "Salat, Hähnchen, Parmesan, Croutons, Caesar-Dressing"
+        }
+      }
+    },
+    "tatlilar": {
+      "title": "Desserts",
+      "subtitle": "",
+      "items": {
+        "Limonlu Cheesecake": {
+          "name": "Zitronen-Cheesecake"
+        },
+        "Frambuazlı Cheesecake": {
+          "name": "Himbeer-Cheesecake"
+        }
+      }
+    },
+    "sicak-icecekler": {
+      "title": "Heiße Getränke",
+      "subtitle": "Stück",
+      "items": {
+        "Türk Kahvesi": {
+          "name": "Türkischer Kaffee"
+        },
+        "Sıcak Çikolata": {
+          "name": "Heiße Schokolade"
+        },
+        "Çay": {
+          "name": "Tee"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,244 @@
+NOX ADINDAKİ GECE KULÜBÜ İÇİN QR MENÜ YAPICAZ 
+AŞAĞIDAKİ MADDELERE GÖRE HAREKET EDELİM
+1.ESKİ MENÜ TASARIMI KLASÖRÜ İÇİNDE YİYECEK VE ALKOL MENÜSÜ BULUNMAKTA FAKAT BU MENÜDE MANTIKSAL HATALAR VAR
+BU HATALARI ÖNCE TESPİT ET - ÖRNEĞİN BAZI ALKOLLER BARDAK FİYATI OLMASI GEREKEN YERDE DE ŞİŞE FİYATI YAZIYOR VB.
+2.QR KOD TARATILINCA QR MENÜ SAYFASI ÇIKACAK SAYFADA KULÜBÜN İNSTAGRAM SAYFASINA LİNK OLACAK
+3.BU İŞ İÇİN HERHANGİ BİR YERE HERHANGİ BİR ÜCRET ÖDEMEK İSTEMİYORUM TAMAMEN ÜCRETSİZ VE REKLAMSIZ SEÇENEKLERİ KULLANALIM
+GOOGLE ÜRÜNLERİ OLABİLİR
+4.SAYFANIN TASARIMI ZARİF OLSUN GÜVEN VERSİN KALİTELİ GÖRÜNSÜN
+5.HIZLI BİR ŞEKİLDE YAYINA ÇIKMAK İSTİYORUM GEREKEN NE VARSA HEMEN YAPALIM
+6.GOOGLE HİZMETLERİNİ KULLANACAKSAK YENİ BİR KULLANICI PROFİLİ OLUŞTURMANI İSTİYORUM
+7.FİYAT GÜNCELLEMELERİ KOLAY YAPILABİLMELİ AMA ONUN QR I AYRI VE ŞİFRELİ OLMALI KULLANICI O SAYFAYA GİREMEMELİ
+8.GECE KULÜBÜNÜN İNSTAGRAM ADRESİ ---- clubnoxlounge 
+9.İNSTAGRAMDAKİ PROFİLDE LOGO VAR ORADAKİ VİDEOLARI DA KULLANABİLİRSİN İSTERSEN
+10.BAŞKA KAYNAKLARDAN DA GÖRSEL KULLANABİLİRSİN
+
+============================================================
+SON DURUM (2026-08-15)
+============================================================
+
+YAYIN: netlify.app (Drop ile) — güncelleme = site/ klasörünü Netlify'a TEKRAR sürükle (1-2 dk).
+
+ADMIN PANELİ: site/yonetim-kzJNFLxj5Zw.html (QR'ı ayrı, şifreli)
+- Giriş şifresi (varsayılan): NOX!2026
+- Şifre kontrolü: SHA-256 hash — site/data/config.json -> "adminPasswordHash"
+  (aynı hash yonetim HTML içine gömülü fallback'te de var; build.py senkron tutar)
+- Panel özellikleri:
+  * Menü düzenleme (bölüm/ürün/fiyat/seçenek ekle-sil)
+  * "menu.json İndir" (Netlify akışı) veya GitHub Token ile tek tık kaydet (isteğe bağlı)
+  * "Şifre Değiştir" (YENİ — 2026-08-15 eklendi):
+    - Mevcut şifre doğrulaması, yeni şifre min 6 karakter, eşleşme + aynı-olmama kontrolü
+    - "config.json İndir" (Netlify akışı) veya GitHub ile otomatik kaydet
+    - githubSave() -> githubSaveFile(path, message) olarak genellendi (menü akışı bozulmadı)
+
+GÜNCELLEME AKIŞLARI (Netlify):
+- Fiyat/menü: Panel -> "menu.json İndir" -> site/data/menu.json üzerine yaz -> site/ klasörünü Netlify'a yeniden sürükle
+- Şifre:     Panel -> "Şifre Değiştir" -> "config.json İndir" -> site/data/config.json üzerine yaz -> python tools/build.py -> site/ klasörünü Netlify'a yeniden sürükle
+  (build.py şart değil ama gömülü fallback'in senkron kalması için önerilir)
+
+YAPILAN DEĞİŞİKLİKLER (2026-08-15):
+1. yonetim-kzJNFLxj5Zw.html: "🛡 Şifre Değiştir" bloğu eklendi (mevcut/yeni/tekrar + 2 buton + mesaj)
+2. admin.js: onPasswordChange/initPasswordChange eklendi, githubSaveFile genelleştirildi
+3. admin.js + HTML: mesajlar/hint'ler Netlify akışına göre güncellendi (GitHub ikinci plana alındı)
+4. README.md: Netlify güncelleme akışı, şifre değiştirme bölümü güncellendi
+5. E2E test (tarayıcıda): yanlış şifre/eşleşmeyen yeni şifre reddedildi; indirilen config.json'da yeni hash doğrulandı
+   (test sırasında yakalanan "eski hash yazılıyor" bug'ı düzeltildi)
+
+NOT: Gerçek config.json'da hâlâ NOX!2026 hash'i duruyor (test şifresi kayıt edilmedi).
+Şifre gerçekten değiştirilirse bu satır güncellenmeli.
+
+YAPILAN DEĞİŞİKLİKLER (2026-08-16) — AÇILIŞ VİDEOSU (INTRO):
+1. site/assets/video/intro.mp4 (YENİ): 8 saniyelik sessiz tanıtım videosu.
+   - 1080x1920 (9:16 dikey), 30fps, h.264, ~2.1 MB
+   - 6 kokteyl fotoğrafı (Unsplash/Pexels, ücretsiz lisans): Ken Burns zoom (yakınlaş/uzaklaş) + 0.6s crossfade
+   - Bitiş karesi: NOX logosu (altın halkalı) + "NOX" wordmark + "Güzel anların lezzetli eşliği" sloganı
+     (Pillow ile site tasarım sisteminden üretilir; slogan GERÇEK genişliğe göre tam ortalanır)
+2. tools/build_intro.py (YENİ): videoyu yeniden üreten araç.
+   - Görsel listesi IMAGES değişkeninde; logo/logan tools içinden ayarlanır.
+   - Kullanım:  python tools/build_intro.py   (ffmpeg + Pillow gerekli)
+   - --no-brand ile bitiş karesi atlanabilir; --out ile çıktı yolu değişir.
+3. index.html: açılış overlay'i eklendi (#intro): video + karartma katmanı + "Menüye Geç" butonu.
+4. style.css: .intro/.intro-video/.intro-veil/.intro-skip stilleri (noir+altın, geçişli),
+   body.no-scroll ile intro boyunca kaydırma kilidi.
+5. menu.js: initIntro() kontrolcüsü —
+   - canplay öncesi initIntro yarışı koruması: readyState>=3 ise anında hazır işaretlenir
+   - Skip butonu 0.9s sonra görünür; tıklayınca intro kapanır
+   - Video bitince (ended) otomatik kapanır; 12s güvenlik zamanlayıcısı asla siyah ekran bırakmaz
+   - Hata yolu: 'error' olayı + video.error + networkState===3 (Chromium fetch abort'ta
+     'error' ÜRETMEZ — NETWORK_NO_SOURCE'ta takılı kalır) + 1.5s gecikmeli ikinci kontrol
+   - Hata/offline durumunda menü doğrudan açılır; menü verisi yoksa gömülü yedek devreye girer
+   - Buton metni çevrilebilir: ui.skipIntro (7 dil + tr)
+6. i18n: ui.skipIntro 7 dil dosyasına eklendi (merge_lang.py'de tr girişi de güncellendi),
+   tools/build.py koşuldu → lang.json + index.html LANG_FALLBACK senkron.
+7. E2E test (tarayıcıda, 19 kontrol): intro açılışı, scroll kilidi, video oynatma,
+   skip gecikmesi (0.97s), skip ile kapanış, video sonu otomatik kapanış, offline fallback,
+   veri yokken gömülü yedekle açılış, konsol hatası yok — hepsi geçti.
+8. Masaüstü/yatay ekran düzeltmesi (16.08.2026):
+   - Sorun: telefonda tam ekran güzel, bilgisayarda video kırpılıyordu (9:16 video, 16:9 ekran;
+     object-fit:cover yüksekliğin ~%70'ini kesiyordu).
+   - Kök neden: .intro üzerindeki display:grid + video'da height:100% — Chromium grid item'da
+     yüksekliği ekran yerine video en-boy oranına göre çözüyordu (1920x1080 ekranda 3413px!).
+   - Çözüm: grid kaldırıldı, .intro-video'ya display:block eklendi; @media (min-aspect-ratio:9/16)
+     içinde object-fit:contain (masaüstü/tablet/telefon yatay) — video tam görünür, yanlarda
+     koyu ambiyans zemin. Telefon dikey (9:16'dan daha dikey) cover kalır.
+   - Doğrulama: 5 ekran senaryosunda piksel analizli test (letterbox bar koyu mu, ortada içerik
+     var mı) + tam regresyon — hepsi geçti.
+
+İLERİDE VİDEOYU GÜNCELLEMEK İÇİN:
+- Görselleri değiştir: tools/build_intro.py içindeki IMAGES listesini düzenle -> python tools/build_intro.py
+- Slogan/metin değiştiyse: TAGLINE/LOGO_PATH değişkenlerini düzenle -> yeniden üret
+- Yayına almak için site/ klasörünü Netlify'a tekrar sürükle (video assets/video/ altında)
+
+YAPILAN DEĞİŞİKLİKLER (2026-08-16) — ANA GRUPLAR:
+1. menu.json: "groups" dizisi eklendi (5 ana grup) + her bölüme "group" alanı:
+   - alkollu (11): Kokteyller, Shotlar, Biralar, Viski, Votka, Cin, Rom, Tekila, Likörler, Vermut & Brandy, Şampanyalar
+   - alkolsuz (3): Alkolsüz Kokteyller, İçecekler, Sıcak İçecekler
+   - aperatif (3): Atıştırmalıklar, Wrap & Fajita, Tostlar
+   - ana-yemek (4): Kahvaltı, Burgerler, Makarnalar, Salatalar
+   - tatli (1): Tatlılar
+2. index.html + menu.js: sticky nav iki satırlı oldu — üstte ana grup sekmeleri (yatay kaydırmalı pill),
+   altta seçili grubun kategori çipleri. Grup değişince sadece o grubun bölümleri render edilir.
+3. Admin panel: her bölüm kartına "Ana grup" select'i eklendi; yeni bölüm ilk gruba (alkollu) düşer.
+   Eski menü verisi (groups alanı olmayan) otomatik olarak varsayılan gruplara map'lenir.
+4. Test (tarayıcıda E2E): 5 grubun 5'i de render/geçiş/filtre doğrulandı; admin'de grup değiştirilip
+   indirilen menu.json'da "groups" + "group" alanlarının korunduğu doğrulandı.
+
+YAPILAN DEĞİŞİKLİKLER (2026-08-16) — DÖVİZ KARŞILIKLARI:
+1. menu.js: loadFx() eklendi — TCMB satış kuru 3 kaynaktan sırayla çekilir (hepsi TCMB verisi):
+   a) raw.githubusercontent.com/kessinc/darphane (GitHub CDN, limitsiz, resmi TCMB kuru)
+   b) api.genelpara.com (TCMB kaynaklı, günde 1000 istek/IP)
+   c) hasanadiguzel.com.tr/api/kurgetir (TCMB aynası)
+   Başarılı kur localStorage'da saklanır (nox_fx_v1); aynı günde tekrar ziyaret ağ çağrısı yapmaz.
+   Üç kaynak da çevrimdışıysa önbellekteki son kur kullanılır; hiç yoksa $/€ satırı gösterilmez.
+   (TCMB'nin kendi today.xml'i CORS engeline takıldığı için doğrudan kullanılamadı.)
+2. Her fiyatın altına "$x · €y" satırı (TCMB satış kuru, 2 ondalık, tr-TR biçimi).
+   Footer'a "Döviz karşılıkları TCMB satış kuru ile hesaplanır · tarih" notu eklendi.
+3. style.css: .price small -> .price-block small seçici düzeltmesi — ORİJİNAL BUG: "Şişe"/"33 cl" notları
+   hiçbir zaman stil almıyordu (selectors eşleşmiyordu, default small görünüyordu). Artık 11px blok sağa
+   hizalı. fx satırı 10.5px altın rengi.
+4. Test (tarayıcıda): kur çekme (Mojito 600₺ -> $12,55 · €10,86), önbellek (günde 1 ağ çağrısı),
+   çevrimdışı düşüş (satırlar gizlenir, menü çalışır), stil doğrulaması yapıldı.
+
+YAPILAN DEĞİŞİKLİKLER (2026-08-16) — ÇOK DİLLİ MENÜ (8 DİL):
+1. Çeviri dosyaları: site/data/i18n/lang_{en,ru,ar,de,zh,ja,es}.json (7 dil) — her biri 22 bölümün
+   tamamını kapsar; bölüm başlıkları/bölüm tanımları/ürün adları/ürün açıklamaları/notlar/UI metinleri.
+   Marka adları (Bud, Corona, Jack Daniel's vb.) her dilde aynı kaldığı için çeviri dosyasında YOK —
+   otomatik olarak Türkçe kaynaktan gelir (fallback). "33 cl" gibi birimler çevrilmez.
+2. tools/merge_lang.py (YENİ): i18n/*.json'ları tek site/data/lang.json içinde birleştirir (tr + 7 dil),
+   tr girişini menu.json'dan üretir; eksik bölüm/ürün uyarılarını yazdırır (asla build'i durdurmaz).
+   build.py artık merge_lang'i çağırıp çıktıyı index.html'e window.LANG_FALLBACK olarak gömer
+   (çift tıklama/file:// modunda da çeviri çalışır; dosya yoksa Türkçe kalır).
+3. menu.js: i18n motoru — dil algılama (localStorage "nox_lang" > tarayıcı dili > Türkçe),
+   t() çeviri araması (eksik anahtar otomatik Türkçe'ye düşer), `<html lang>` + Arapça'da dir="rtl".
+4. index.html: hero sağ üstte dil seçici (lang-sel, 8 dil, kendi adıyla); #ig-follow/#ig-view/#f-tag
+   metinleri artık çeviriye bağlı. style.css: Arapça/CJK font zincirleri (Amiri/Noto Kufi, PingFang/
+   Microsoft YaHei) + o dillerde harf aralığı sadeleştirme (upscale letter-spacing Arapça'da bitişik
+   yazıyı, Çince/Japonca'da ideogramları bozuyordu).
+5. Admin paneli TÜRKÇE kalır (yalnız müşteri sayfası çok dilli).
+6. Test (tarayıcıda E2E, 24 kontrol): otomatik dil algılama (tr default), seçici ile 8 dil geçişi,
+   Arapça RTL geometrisi (fiyatlar satırın solunda), Çince/Japonca glif+font doğrulaması, yenileme
+   sonrası seçim kalıcılığı (localStorage), desteklenmeyen dilde Türkçe fallback, eksik çeviride
+   marka adı fallback'i, döviz satırının çevirisi, yönetim sayfasının etkilenmediği. Hepsi geçti.
+
+============================================================
+GUNCELLEME (2026-08-16) - NETLIFY TEK TIK KAYDET
+============================================================
+
+ADMIN PANELI ARTIK GITHUB OLMADAN DOGRUDAN NETLIFY'A YAYINLAR:
+- Buton: "� Netlify'a Kaydet" (altta sabit kaydetme cubugunda)
+- Kurulum (tek seferlik): Panel -> "� Netlify'a Tek Tikla Yayinla" bolumu ->
+  Netlify hesabi -> User settings -> Applications -> Personal access tokens -> yeni token
+  -> yapistir (nl-token) -> "Siteleri Listele" -> kendi siteni sec -> kaydet
+- Calisma mantigi: admin.js SITE_FILES listesindeki tum site dosyalarini toplar,
+  JSZip ile zip'ler, Netlify Deploy API'ye (api.netlify.com/v1) gonderir -> 1-2 dk'da yayinda
+- Sifre degistirme: "Degistir & Netlify'a Kaydet" -> config.json + menu.json birlikte yayinlanir
+- GitHub butonlari/alani TAMAMEN KALDIRILDI (kullanici sadece Netlify kullaniyor)
+- Yeni dosya: site/assets/js/jszip.min.js (MIT, ucretsiz - zip uretimi icin)
+  NOT: site dosya yapisi degisirse admin.js SITE_FILES listesi de guncellenmeli
+- index.html: translate=no + google notranslate eklendi (Chrome otomatik cevirisi
+  marka adlarini bozuyordu: "Tuborg Gold" -> "Tuborg Altini" - artik engellendi)
+- yonetim-qr.html placeholder'lari netlify.app adreslerine guncellendi
+
+============================================================
+GUNCELLEME (2026-08-17) - TEK "KAYDET" BUTONU
+============================================================
+
+KULLANICI ISTEGI: "oraya kaydet buraya kaydet olmasin, sadece kaydet olsun,
+kayit tamamlaninca 'Kayit Basarili' uyarisi gelsin"
+
+- ADMIN PANELINDE ARTIK SADECE 1 KAYDET BUTONU VAR ("Kaydet"):
+  * Netlify token + site kuruluysa -> tum siteyi Netlify'a yayinlar
+  * Kurulu degilse -> menu.json'u indirir (manuel yukleme yolu)
+  * Eski "menu.json Indir" butonu KALDIRILDI (akillica otomatik davranis)
+- SIFRE BOLUMU: 2 buton yerine tek "Sifreyi Kaydet"
+  * Netlify kuruluysa config.json + menu.json birlikte yayinlanir
+  * Degilse config.json indirilir
+- BASARI MESAJLARI ARTIK HER ZAMAN "Kayit Basarili!" ile basliyor:
+  * "Kayit Basarili! Netlify'a yayinlandi - 1-2 dk icinde sitede gorunur."
+  * "Kayit Basarili! menu.json indirildi - site/data/menu.json uzerine yaz..."
+  * Hata durumunda: "Kayit basarisiz: ..." (net ayrim)
+- README.md tek butonlu akisa gore guncellendi
+- Test (tarayicida E2E): tek buton varligi, kurulum yokken indir + "Kayit Basarili",
+  kurulum varken mock deploy + "Kayit Basarili" - hepsi gecti
+
+============================================================
+GUNCELLEME (2026-08-17) - TOKEN SIFRELEME + SAF NETLIFY AKISI
+============================================================
+
+KULLANICI ISTEGI: token kimse tarafindan gorulmesin (sifrele); kullanici
+hic dosya indirip/yuklemek zorunda kalmasin - her sey panelden olsun.
+
+- TOKEN ARTIK SIFRELI SAKLANIR: PBKDF2 (150k iter, SHA-256) + AES-GCM,
+  anahtar = yonetim paneli giris sifresi (sessionPw, yalniz bellekte)
+  * localStorage anahtari: nox_netlify_token (v1:salt:iv:cipher, base64)
+  * Duz metin token HICBIR YERDE saklanmaz (ne localStorage ne alan degeri)
+  * nl-token alani her render'da temizlenir, placeholder "sifreli kayitli"
+  * Eski duz nox_netlify.token tasima sirasinda bulunursa sifrelenir ve silinir
+- KAYDET ARTIK HER ZAMAN NETLIFY'A:
+  * onSave: site secili degilse -> uyari; token yoksa -> uyari (indirme YOK)
+  * onPasswordChange: ayni - Netlify baglantisi sart; indirme YOK
+  * download() fonksiyonu tamamen kaldirildi
+- SIFRE DEGISTIRINCE: token eski sifreyle cozulur, yeni sifreyle yeniden sifrelenir
+- SITE_FILES'taki cift assets/video/intro.mp4 kaydi temizlendi
+- README/NOTLAR/HTML hint'leri guncellendi ("indir ve yukle" akislari kaldi)
+- test: sifreli token akisi 14/14 GECTI (E2E, 2026-08-17):
+  * site yokken Kaydet -> uyari, indirme YOK
+  * deploy Bearer auth ile gider; token v1:salt:iv:ct olarak sifreli kayitli
+  * nox_netlify ve localStorage'da duz token YOK
+  * dogru sifre cozer / yanlis sifre cozmez (AES-GCM auth)
+  * sifre degisince token yeni sifreyle yeniden sifrelenir; eski sifre artik cozmez
+  * reload sonrasi site korunur; placeholder "sifreli kayitli" guncellenir
+
+============================================================
+GUNCELLEME (2026-08-17) - CORS ANALIZ + FALLBACK
+============================================================
+
+CANLI BULGU: api.netlify.com tarayicidan POST /deploys'a
+Access-Control-Allow-Origin: *, * (cift baslik) donduruyor.
+Chrome bunu reddediyor (preflight basarisiz).
+GET /sites basarili, sadece POST engelleniyor.
+Hem localhost hem netlify.app origin'inde ayni sorun.
+
+COZUM: netlify/functions/deploy.mjs proxy denenildi ama
+Netlify API zip deploy'lari fonksiyon islemiyor (404).
+Sonuc: FONKSIYON PROXY CALISMADI.
+
+NIHAİ COZUM: Fallback mekanizması
+- netlifyDeploy: once api.netlify.com'a POST dener
+- CORS/agir hatada: zipBlob hata objesine eklenir
+- onSave/onPasswordChange: err.zipBlob gorurse → triggerDownload
+  ile nox-site.zip indirir + "sürükleyip bırak" mesaji gosterir
+- triggerDownload(): URL.createObjectURL + <a>.click()
+- Eski download() fonksiyonu geri eklendi (fallback icin gerekli)
+
+TEST SONUCLARI (2026-08-17):
+- nox_enc_token_test.py: 14/14 GECTI (token sifreleme + proxy mock)
+- nox_cors_fallback_test.py: PASS (POST basarisiz → zip indi + mesaj)
+- nox_real_deploy_test.py: FAIL (CORS - beklenen, tarayicidan POST calismaz)
+- node --check admin.js: OK
+- node --check deploy.mjs: OK (fonksiyon dosyasi ama calismiyor)
+- build.py: OK
+
+ONEMLI NOT: netlify/functions/deploy.mjs dosyasi hala SITE_FILES'ta
+duruyor (ZIP'e dahil). Gelecekte Netlify CORS duzeltirse veya
+fonksiyon destegi gelirse kullanilabilir. Simdi calismiyor.
