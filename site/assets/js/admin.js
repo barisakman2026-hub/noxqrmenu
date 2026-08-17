@@ -1,44 +1,15 @@
-/* NOX Lounge — Yönetim Paneli (GitHub API entegrasyonu) */
+/* NOX Lounge — Yönetim Paneli (Netlify Function ile JSON deploy) */
 (function () {
   "use strict";
 
   var CONFIG_URL = "data/config.json";
   var MENU_URL = "data/menu.json";
-  var GITHUB_API = "https://api.github.com";
+  var DEPLOY_FN = "/.netlify/functions/deploy-json";
 
-  /* Sitede yayında olan ve deploy'a dahil edilecek tüm dosyalar. */
-  var SITE_FILES = [
-    "index.html",
-    "yonetim-kzJNFLxj5Zw.html",
-    "yonetim-qr.html",
-    "assets/css/admin.css",
-    "assets/css/style.css",
-    "assets/img/favicon.svg",
-    "assets/img/logo.png",
-    "assets/js/admin.js",
-    "assets/js/menu.js",
-    "assets/js/qrcode.js",
-    "assets/js/jszip.min.js",
-    "assets/video/intro.mp4",
-    "data/config.json",
-    "data/lang.json",
-    "data/menu.json",
-    "data/i18n/lang_ar.json",
-    "data/i18n/lang_de.json",
-    "data/i18n/lang_en.json",
-    "data/i18n/lang_es.json",
-    "data/i18n/lang_ja.json",
-    "data/i18n/lang_ru.json",
-    "data/i18n/lang_zh.json",
-    "qr/admin.png",
-    "qr/menu.png"
-  ];
-
-  var cfg = null;       // config.json içeriği
-  var menu = null;      // menu.json içeriği (düzenlenen kopya)
+  var cfg = null;
+  var menu = null;
   var dirty = false;
 
-  /* ---------- yardımcılar ---------- */
   function $(id) { return document.getElementById(id); }
 
   function esc(s) {
@@ -50,92 +21,8 @@
   function sha256hex(str) {
     var enc = new TextEncoder().encode(str);
     return crypto.subtle.digest("SHA-256", enc).then(function (buf) {
-      return Array.from(new Uint8Array(buf))
-        .map(function (b) { return b.toString(16).padStart(2, "0"); })
-        .join("");
+      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
     });
-  }
-
-  /* ---------- token şifreleme (Web Crypto, PBKDF2 + AES-GCM) ---------- */
-  var sessionPw = null;      // giriş şifresi (yalnız bellekte, oturum süresince)
-  var TOKEN_ENC_KEY = "nox_github_token";
-
-  function b64enc(buf) {
-    var bin = "";
-    var u = new Uint8Array(buf);
-    for (var i = 0; i < u.length; i++) bin += String.fromCharCode(u[i]);
-    return btoa(bin);
-  }
-  function b64dec(s) {
-    var bin = atob(s);
-    var u = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
-    return u;
-  }
-
-  function deriveKey(pw, salt) {
-    return crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"])
-      .then(function (base) {
-        return crypto.subtle.deriveKey(
-          { name: "PBKDF2", salt: salt, iterations: 150000, hash: "SHA-256" },
-          base,
-          { name: "AES-GCM", length: 256 },
-          false,
-          ["encrypt", "decrypt"]
-        );
-      });
-  }
-
-  /* Token'ı panel şifresiyle şifreleyip localStorage'a yazar (asla düz metin değil). */
-  function storeTokenEncrypted(token, pw) {
-    var salt = crypto.getRandomValues(new Uint8Array(16));
-    var iv = crypto.getRandomValues(new Uint8Array(12));
-    return deriveKey(pw, salt).then(function (key) {
-      return crypto.subtle.encrypt(
-        { name: "AES-GCM", iv: iv },
-        key,
-        new TextEncoder().encode(token)
-      );
-    }).then(function (ct) {
-      localStorage.setItem(TOKEN_ENC_KEY, "v1:" + b64enc(salt) + ":" + b64enc(iv) + ":" + b64enc(ct));
-      $("gh-token").placeholder = "🔒 token şifreli kayıtlı (yeni gireceksen üzerine yaz)";
-    });
-  }
-
-  /* Şifreli token'ı çözer. Yanlış şifrede null döner. */
-  function decryptToken(pw) {
-    var raw = localStorage.getItem(TOKEN_ENC_KEY);
-    if (!raw) return Promise.resolve(null);
-    var parts = raw.split(":");
-    if (parts.length !== 4) return Promise.resolve(null);
-    var salt = b64dec(parts[1]), iv = b64dec(parts[2]), ct = b64dec(parts[3]);
-    return deriveKey(pw, salt).then(function (key) {
-      return crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ct);
-    }).then(function (pt) {
-      return new TextDecoder().decode(pt);
-    }).catch(function () {
-      return null;
-    });
-  }
-
-  /* Kullanılacak token: alana yeni yazıldıysa o (ve şifreli kaydedilir),
-     değilse şifreli depodan çözülür. Şifre gerekirse sorar. */
-  function resolveToken() {
-    var fieldVal = $("gh-token").value.trim();
-    if (fieldVal) {
-      var p = sessionPw || window.prompt("Token şifreli saklanacak — korumak için yönetim şifrenizi girin:");
-      if (!p) return Promise.reject(new Error("Token kaydedilmedi: şifre gerekli."));
-      return storeTokenEncrypted(fieldVal, p).then(function () {
-        sessionPw = p;
-        $("gh-token").value = "";
-        return fieldVal;
-      });
-    }
-    if (sessionPw) return decryptToken(sessionPw);
-    var asked = window.prompt("Kayıtlı token şifreli — çözmek için yönetim şifrenizi girin:");
-    if (!asked) return Promise.resolve(null);
-    sessionPw = asked;
-    return decryptToken(asked);
   }
 
   function setMsg(id, text, ok) {
@@ -144,7 +31,6 @@
     el.className = "msg" + (ok ? " ok" : text ? " err" : "");
   }
 
-  /* ---------- giriş ---------- */
   function initAuth() {
     $("auth-form").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -153,7 +39,6 @@
       setMsg("auth-msg", "Kontrol ediliyor…", false);
       sha256hex(pw).then(function (hash) {
         if (hash === cfg.adminPasswordHash) {
-          sessionPw = pw;
           sessionStorage.setItem("nox_auth", "1");
           showPanel();
         } else {
@@ -163,7 +48,6 @@
     });
   }
 
-  /* ---------- panel ---------- */
   function showPanel() {
     $("auth-screen").style.display = "none";
     $("panel").style.display = "block";
@@ -174,22 +58,13 @@
   function render() {
     $("updated-label").textContent = menu.meta.updated || "";
     renderSections();
-    var settings = loadSettings();
-    if (settings.owner) $("gh-owner").value = settings.owner;
-    if (settings.repo) $("gh-repo").value = settings.repo;
-    $("gh-token").value = "";
-    $("gh-token").placeholder = localStorage.getItem(TOKEN_ENC_KEY)
-      ? "🔒 token şifreli kayıtlı (yeni gireceksen üzerine yaz)"
-      : "ghp_...";
   }
 
   function newSection() {
     var g = (menu.groups && menu.groups.length) ? menu.groups[0].id : "alkollu";
     return { id: "k" + Date.now(), group: g, title: "Yeni Bölüm", subtitle: "", items: [] };
   }
-  function newItem() {
-    return { name: "Yeni Ürün", price: 0, note: "" };
-  }
+  function newItem() { return { name: "Yeni Ürün", price: 0, note: "" }; }
 
   function groupOptions(si) {
     var sec = menu.sections[si];
@@ -201,7 +76,6 @@
     }).join("");
   }
 
-  /* ---------- bölüm render ---------- */
   function renderSections() {
     var wrap = $("sections-wrap");
     wrap.innerHTML = "";
@@ -217,11 +91,11 @@
         "</div>" +
         '<div class="sec-body">' +
         '<div class="sec-meta">' +
-        '<input class="sec-title" data-si="' + si + '" value="' + esc(sec.title) + '" placeholder="Bölüm adı (örn. Bira)">' +
-        '<select class="sec-group" data-si="' + si + '" title="Ana grup" aria-label="Ana grup"></select>' +
+        '<input class="sec-title" data-si="' + si + '" value="' + esc(sec.title) + '" placeholder="Bölüm adı">' +
+        '<select class="sec-group" data-si="' + si + '" aria-label="Ana grup"></select>' +
         "</div>" +
         '<div class="sec-meta">' +
-        '<input class="sec-subtitle" data-si="' + si + '" value="' + esc(sec.subtitle || "") + '" placeholder="Alt not (opsiyonel)">' +
+        '<input class="sec-subtitle" data-si="' + si + '" value="' + esc(sec.subtitle || "") + '" placeholder="Alt not">' +
         "</div>" +
         '<div class="items-wrap"></div>' +
         '<button class="add-item" data-si="' + si + '">+ Ürün Ekle</button>' +
@@ -229,12 +103,9 @@
 
       card.querySelector(".sec-group").innerHTML = groupOptions(si);
       var itemsWrap = card.querySelector(".items-wrap");
-      sec.items.forEach(function (item, ii) {
-        itemsWrap.appendChild(itemEditor(sec, item, si, ii));
-      });
+      sec.items.forEach(function (item, ii) { itemsWrap.appendChild(itemEditor(sec, item, si, ii)); });
       wrap.appendChild(card);
     });
-
     wrap.addEventListener("input", onInput);
     wrap.addEventListener("change", onInput);
     wrap.addEventListener("click", onClick);
@@ -281,20 +152,17 @@
 
       var optRows = document.createElement("div");
       optRows.className = "opt-rows";
-      item.options.forEach(function (o, oi) {
-        optRows.appendChild(optionRow(si, ii, oi, o));
-      });
+      item.options.forEach(function (o, oi) { optRows.appendChild(optionRow(si, ii, oi, o)); });
       optWrap.appendChild(optRows);
 
       var addOpt = document.createElement("button");
       addOpt.className = "add-opt";
       addOpt.dataset.si = si;
       addOpt.dataset.ii = ii;
-      addOpt.textContent = "+ Fiyat seçeneği ekle (bardak/şişe)";
+      addOpt.textContent = "+ Fiyat seçeneği ekle";
       optWrap.appendChild(addOpt);
       box.appendChild(optWrap);
     }
-
     return box;
   }
 
@@ -308,7 +176,7 @@
     var label = document.createElement("input");
     label.className = "opt-label";
     label.value = o.label || "";
-    label.placeholder = "Etiket (örn. Bardak)";
+    label.placeholder = "Etiket";
 
     var price = document.createElement("input");
     price.className = "opt-price";
@@ -320,7 +188,6 @@
     var rm = document.createElement("button");
     rm.className = "rm rm-opt";
     rm.textContent = "✕";
-    rm.title = "Seçeneği sil";
 
     row.appendChild(label);
     row.appendChild(price);
@@ -328,7 +195,6 @@
     return row;
   }
 
-  /* ---------- olaylar ---------- */
   function onInput(e) {
     dirty = true;
     var t = e.target;
@@ -336,12 +202,9 @@
 
     if (t.classList.contains("sec-group")) {
       si = parseInt(t.dataset.si, 10);
-      var secG = menu.sections[si];
-      if (!secG) return;
-      secG.group = t.value;
+      if (menu.sections[si]) menu.sections[si].group = t.value;
       return;
     }
-
     if (t.classList.contains("sec-title") || t.classList.contains("sec-subtitle")) {
       si = parseInt(t.dataset.si, 10);
       var sec0 = menu.sections[si];
@@ -385,7 +248,6 @@
       t.closest(".sec-card").classList.toggle("closed");
       return;
     }
-
     if (t.classList.contains("rm-sec")) {
       var si0 = parseInt(t.dataset.si, 10);
       if (confirm("Bu bölüm silinsin mi?")) {
@@ -395,7 +257,6 @@
       }
       return;
     }
-
     if (t.classList.contains("add-item")) {
       var si1 = parseInt(t.dataset.si, 10);
       menu.sections[si1].items.push(newItem());
@@ -404,7 +265,6 @@
       wrap.appendChild(itemEditor(menu.sections[si1], menu.sections[si1].items[menu.sections[si1].items.length - 1], si1, menu.sections[si1].items.length - 1));
       return;
     }
-
     if (t.classList.contains("rm")) {
       var box = t.closest(".item-edit");
       var si2 = parseInt(box.dataset.si, 10);
@@ -421,7 +281,6 @@
       renderSections();
       return;
     }
-
     if (t.classList.contains("add-opt")) {
       var si3 = parseInt(t.dataset.si, 10);
       var ii3 = parseInt(t.dataset.ii, 10);
@@ -435,7 +294,6 @@
     }
   }
 
-  /* ---------- kaydetme ---------- */
   function buildJSON() {
     menu.meta.updated = new Date().toISOString().slice(0, 10);
     var copy = JSON.parse(JSON.stringify(menu));
@@ -452,127 +310,31 @@
     return copy;
   }
 
-  function loadSettings() {
-    try {
-      var s = JSON.parse(localStorage.getItem("nox_github") || "{}");
-      if (s.token) {
-        var legacy = s.token;
-        delete s.token;
-        localStorage.setItem("nox_github", JSON.stringify(s));
-        if (sessionPw) {
-          storeTokenEncrypted(legacy, sessionPw).catch(function () {});
-        }
-      }
-      return s;
-    } catch (e) { return {}; }
-  }
-  function saveSettings(s) {
-    var cur = loadSettings();
-    var next = {
-      owner: s.owner != null ? s.owner : cur.owner,
-      repo: s.repo != null ? s.repo : cur.repo
-    };
-    localStorage.setItem("nox_github", JSON.stringify(next));
-  }
-
-  /* ---------- GitHub API ---------- */
-  function githubHeaders(token) {
-    return {
-      Authorization: "token " + token,
-      Accept: "application/vnd.github.v3+json",
-      "Content-Type": "application/json"
-    };
-  }
-
-  function githubGetFile(token, owner, repo, path) {
-    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo + "/contents/" + path, {
-      headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" }
+  function deployFiles(files) {
+    return fetch(DEPLOY_FN, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ files: files })
     }).then(function (r) {
-      if (r.status === 404) return null; // dosya yoksa yeni oluşturulacak
-      if (!r.ok) throw new Error("GitHub dosya okuma hatası (HTTP " + r.status + ")");
-      return r.json();
-    });
-  }
-
-  function githubPutFile(token, owner, repo, path, content, message, sha) {
-    var body = {
-      message: message,
-      content: btoa(unescape(encodeURIComponent(content))),
-      branch: "main"
-    };
-    if (sha) body.sha = sha;
-
-    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo + "/contents/" + path, {
-      method: "PUT",
-      headers: githubHeaders(token),
-      body: JSON.stringify(body)
-    }).then(function (r) {
-      if (!r.ok) {
-        return r.json().then(function (err) {
-          throw new Error("GitHub yazma hatası (" + path + "): " + (err.message || "HTTP " + r.status));
-        });
-      }
-      return r.json();
-    });
-  }
-
-  function githubPush(token, owner, repo, files) {
-    /* files: { path: content } — sırayla her dosyayı GitHub'a yazar */
-    var paths = Object.keys(files);
-    var chain = Promise.resolve();
-
-    paths.forEach(function (path) {
-      chain = chain.then(function () {
-        return githubGetFile(token, owner, repo, path).then(function (existing) {
-          var sha = existing ? existing.sha : null;
-          return githubPutFile(token, owner, repo, path, files[path], "NOX QR Menu guncelleme: " + path, sha);
-        });
+      return r.json().then(function (data) {
+        if (!r.ok) throw new Error(data.error || "Deploy hatası");
+        return data;
       });
     });
-
-    return chain;
   }
 
-  function validateGitHub(owner, repo, token) {
-    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo, {
-      headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" }
-    }).then(function (r) {
-      if (r.status === 404) throw new Error("Repo bulunamadı: " + owner + "/" + repo);
-      if (!r.ok) throw new Error("GitHub erişim hatası (HTTP " + r.status + ")");
-      return r.json();
-    }).then(function (data) {
-      return { name: data.full_name, url: data.html_url, private: data.private };
-    });
-  }
-
-  /* ---------- kaydet ---------- */
   function onSave() {
     var content = JSON.stringify(buildJSON(), null, 2) + "\n";
-    var owner = $("gh-owner").value.trim();
-    var repo = $("gh-repo").value.trim();
-    if (!owner || !repo) {
-      setMsg("save-msg", "Kaydedilemedi: ⚙ GitHub bölümünde owner/repo gir.", false);
-      return;
-    }
-    setMsg("save-msg", "Kaydediliyor (GitHub'a push yapılıyor)…", false);
-    resolveToken().then(function (token) {
-      if (!token) {
-        setMsg("save-msg", "Kaydedilemedi: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
-        return;
-      }
-      saveSettings({ owner: owner, repo: repo });
-      var files = {};
-      files["data/menu.json"] = content;
-      return githubPush(token, owner, repo, files).then(function () {
-        dirty = false;
-        setMsg("save-msg", "Kayıt Başarılı! GitHub'a push edildi — Netlify 1-2 dk içinde otomatik deploy edecek.", true);
-      });
+    setMsg("save-msg", "Kaydediliyor…", false);
+
+    deployFiles({ "data/menu.json": content }).then(function (res) {
+      dirty = false;
+      setMsg("save-msg", "Kayıt Başarılı! Site güncellendi.", true);
     }).catch(function (err) {
       setMsg("save-msg", "Kayıt başarısız: " + err.message, false);
     });
   }
 
-  /* ---------- şifre değiştirme ---------- */
   function onPasswordChange() {
     var cur = $("pw-current").value;
     var n1 = $("pw-new").value;
@@ -591,36 +353,14 @@
         var configContent = JSON.stringify(updated, null, 2) + "\n";
         var menuContent = JSON.stringify(buildJSON(), null, 2) + "\n";
 
-        var apply = function () {
+        setMsg("pw-msg", "Şifre kaydediliyor…", false);
+        deployFiles({
+          "data/config.json": configContent,
+          "data/menu.json": menuContent
+        }).then(function (res) {
           cfg.adminPasswordHash = newHash;
-          sessionPw = n1;
           $("pw-current").value = $("pw-new").value = $("pw-new2").value = "";
-        };
-
-        var owner = $("gh-owner").value.trim();
-        var repo = $("gh-repo").value.trim();
-        if (!owner || !repo) {
-          setMsg("pw-msg", "Şifre kaydedilemedi: ⚙ GitHub bölümünde owner/repo gir.", false);
-          return;
-        }
-        setMsg("pw-msg", "Şifre kaydediliyor (GitHub'a push yapılıyor)…", false);
-        resolveToken().then(function (token) {
-          if (!token) {
-            setMsg("pw-msg", "Şifre kaydedilemedi: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
-            return;
-          }
-          var files = {};
-          files["data/config.json"] = configContent;
-          files["data/menu.json"] = menuContent;
-          return githubPush(token, owner, repo, files).then(function () {
-            apply();
-            return decryptToken(cur).then(function (oldToken) {
-              if (oldToken) return storeTokenEncrypted(oldToken, n1);
-              return null;
-            });
-          }).then(function () {
-            setMsg("pw-msg", "Kayıt Başarılı! Şifre değişti ve GitHub'a push edildi — Netlify 1-2 dk içinde deploy edecek.", true);
-          });
+          setMsg("pw-msg", "Kayıt Başarılı! Şifre değişti.", true);
         }).catch(function (err) {
           setMsg("pw-msg", "Kayıt başarısız: " + err.message, false);
         });
@@ -628,36 +368,13 @@
     });
   }
 
-  function initPasswordChange() {
-    $("pw-save-github").addEventListener("click", onPasswordChange);
-  }
-
-  /* ---------- GitHub doğrulama ---------- */
-  function validateGitHubRepo() {
-    resolveToken().then(function (token) {
-      if (!token) return setMsg("gh-msg", "Token yok: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
-      var owner = $("gh-owner").value.trim();
-      var repo = $("gh-repo").value.trim();
-      if (!owner || !repo) return setMsg("gh-msg", "Owner ve Repo alanlarını doldur.", false);
-      setMsg("gh-msg", "Repo doğrulanıyor…", false);
-      return validateGitHub(owner, repo, token).then(function (info) {
-        saveSettings({ owner: owner, repo: repo });
-        setMsg("gh-msg", "Repo bulundu: " + info.name + (info.private ? " (private)" : " (public)") + " — " + info.url, true);
-      });
-    }).catch(function (err) {
-      setMsg("gh-msg", "Hata: " + err.message, false);
-    });
-  }
-
-  /* ---------- kurulum ---------- */
   function initPanel() {
-    $("save-github").addEventListener("click", onSave);
-    $("gh-validate").addEventListener("click", validateGitHubRepo);
+    $("save-netlify").addEventListener("click", onSave);
+    $("pw-save-netlify").addEventListener("click", onPasswordChange);
     $("logout").addEventListener("click", function () {
       sessionStorage.removeItem("nox_auth");
       location.reload();
     });
-    initPasswordChange();
     $("add-section").addEventListener("click", function () {
       menu.sections.push(newSection());
       dirty = true;
@@ -674,17 +391,12 @@
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
-    }).catch(function () {
-      /* fetch çalışmazsa (örn. file:// ile açıldıysa) gömülü yedeği kullan */
-      if (fallback) return fallback;
-      throw new Error("Veri yok: " + url);
-    });
+    }).catch(function () { return fallback || Promise.reject(new Error("Veri yok")); });
   }
 
   function boot() {
     initAuth();
     initPanel();
-
     Promise.all([
       fetchJSON(CONFIG_URL, window.CONFIG_FALLBACK),
       fetchJSON(MENU_URL, window.MENU_FALLBACK)
@@ -693,7 +405,7 @@
       menu = res[1];
       if (sessionStorage.getItem("nox_auth") === "1") showPanel();
     }).catch(function () {
-      setMsg("auth-msg", "Menü verisi yüklenemedi. Sayfayı yenileyin.", false);
+      setMsg("auth-msg", "Menü verisi yüklenemedi.", false);
     });
   }
 

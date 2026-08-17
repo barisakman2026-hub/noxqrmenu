@@ -43,39 +43,11 @@
 
     <button class="add-section" id="add-section">+ Yeni Bölüm Ekle</button>
 
-    <!-- GitHub ile tek tık kaydet -->
-    <details class="settings">
-      <summary>⚙ GitHub'a Tek Tıkla Yayınla</summary>
-      <div class="hint">
-        Değişiklikleri <b>GitHub repo'ya push eder</b>, Netlify otomatik deploy eder.
-        Kurulum (tek seferlik): GitHub hesabına gir → <b>Settings → Developer settings →
-        Personal access tokens → Tokens (classic) → Generate new token</b> → <b>public_repo</b> veya <b>repo</b> scope seç →
-        oluştur → aşağıya yapıştır → <b>Repo Doğrula</b>'ya bas. Token <b>panel şifrenle şifrelenerek</b> bu tarayıcıda saklanır (asla düz metin değil).
-      </div>
-      <div class="field">
-        <label for="gh-token">GitHub Token (Personal Access Token)</label>
-        <input id="gh-token" type="password" placeholder="ghp_...">
-      </div>
-      <div class="field">
-        <label for="gh-owner">Repo Owner (kullanıcı/ad)</label>
-        <input id="gh-owner" type="text" placeholder="örn. barisakman2026-hub">
-      </div>
-      <div class="field">
-        <label for="gh-repo">Repo Adı</label>
-        <input id="gh-repo" type="text" placeholder="örn. noxqrmenu">
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-ghost" id="gh-validate" type="button">Repo Doğrula</button>
-      </div>
-      <div class="msg" id="gh-msg"></div>
-    </details>
-
     <!-- Şifre değiştir -->
     <details class="settings">
       <summary>🛡 Şifre Değiştir</summary>
       <div class="hint">
-        Yeni şifre en az 6 karakter olmalı. Değişiklik <b>config.json</b>'a yazılır ve
-        <b>GitHub'a push edilir → Netlify otomatik deploy eder</b> (kurulum ⚙ bölümünde yapılır).
+        Yeni şifre en az 6 karakter olmalı. Değişiklik <b>config.json</b>'a yazılır ve site otomatik güncellenir.
       </div>
       <div class="field">
         <label for="pw-current">Mevcut şifre</label>
@@ -90,7 +62,7 @@
         <input id="pw-new2" type="password" autocomplete="new-password">
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-gold" id="pw-save-github">Şifreyi Kaydet</button>
+        <button class="btn btn-gold" id="pw-save-netlify">Şifreyi Kaydet</button>
       </div>
       <div class="msg" id="pw-msg"></div>
     </details>
@@ -99,7 +71,7 @@
   <!-- ============ KAYDETME ÇUBUĞU ============ -->
   <div class="savebar" style="display:none;" id="savebar">
     <div class="msg" id="save-msg" style="flex:1;text-align:left;"></div>
-    <button class="btn btn-gold" id="save-github">Kaydet</button>
+    <button class="btn btn-gold" id="save-netlify">Kaydet</button>
   </div>
 
   <!-- Gömülü yedek veri (tools/build.py ile üretilir) -->
