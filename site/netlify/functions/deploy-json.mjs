@@ -4,12 +4,8 @@ export default async (request, context) => {
   }
 
   const AUTH = context.headers.get("x-api-key") || "";
-  const SITE_ID = context.env.SITE_ID || "08915c59-d86c-4e8d-9633-45bbadcdd580";
-  const NL_TOKEN = context.env.NETLIFY_AUTH_TOKEN || "";
-
-  if (!NL_TOKEN) {
-    return new Response(JSON.stringify({ error: "NETLIFY_AUTH_TOKEN env missing" }), { status: 500, headers: { "Content-Type": "application/json" } });
-  }
+  const SITE_ID = "08915c59-d86c-4e8d-9633-45bbadcdd580";
+  const NL_TOKEN = "nfp_7A89DKN3VYsD4muP1YHnvSZbwmRcizKt5bcc";
 
   let body;
   try {
