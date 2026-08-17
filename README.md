@@ -36,21 +36,19 @@ python tools/build_intro.py        # -> site/assets/video/intro.mp4
 
 Sonra `site/` klasörünü Netlify'a tekrar sürükleyin (video `assets/video/` altındadır).
 
-## Yayına Alma (5 dakika, ücretsiz)
+## Yayına Alma (GitHub + Netlify, otomatik deploy)
 
-### Seçenek — Netlify Drop (önerilir: en hızlı, tek tık)
+### Kurulum (tek seferlik)
 
-1. [app.netlify.com/drop](https://app.netlify.com/drop) → ücretsiz hesap aç.
-2. `site/` klasörünü pencereye **sürükle-bırak** → anında yayında.
-3. Güncelleme: `site/` klasörünü Netlify'a **tekrar sürükle** → aynı adres, yeni sürüm (1-2 dk).
-4. Adresin: `https://SITEN-ADI.netlify.app/` (panelde görünür).
+1. GitHub hesabında **noxqrmenu** repo'su oluştur → `site/` klasörünü push et.
+2. Netlify hesabında site oluştur → **"Link site to Git"** → GitHub repo'yu seç → **Publish directory: `site`** → Deploy.
+3. Yönetim panelinde **⚙ GitHub'a Tek Tıkla Yayınla** bölümünden GitHub token + repo bilgilerini gir → **Repo Doğrula**.
 
-> İpucu: Fiyat güncellemeleri için `site/` sürüklemeye gerek yok — yönetim panelindeki
-> **"Kaydet"** butonu her şeyi halleder: Netlify bağlantısı kuruluysa tüm siteyi tek tıkla
-> yeniden yayınlar. Netlify bağlantısı kurulu değilse buton uyarı verir (kurulum: paneldeki
-> ⚙ bölümünden Netlify token'ı + siteni seç, tek seferlik). Kayıt bitince **"Kayıt Başarılı!"**
-> uyarısı çıkar. Token, panel giriş şifrenle **şifrelenerek** (PBKDF2 + AES-GCM) tarayıcıda
-> saklanır — asla düz metin değildir.
+### Güncelleme (otomatik)
+
+Fiyatları düzenle → **"Kaydet"** → GitHub'a push edilir → Netlify otomatik deploy eder (1-2 dk).
+
+> Token, panel giriş şifrenle **şifrelenerek** (PBKDF2 + AES-GCM) tarayıcıda saklanır — asla düz metin değildir.
 
 ## QR Kodları Üretme
 
@@ -69,17 +67,15 @@ Veya tarayıcıda `yonetim-qr.html` dosyasını açıp URL'leri yapıştır.
 
 1. `yonetim-kzJNFLxj5Zw.html` adresini aç (sadece bu QR'ı bilen girebilir).
 2. Şifre: **NOX!2026**
-3. Fiyatları düzenle → **"Kaydet"** → tüm site tek tıkla Netlify'a yeniden yüklenir
-   (1-2 dk içinde yayında). Kayıt bitince **"Kayıt Başarılı!"** uyarısı çıkar.
-   - İlk kullanımda "⚙ Netlify'a Tek Tıkla Yayınla" bölümünden Netlify **Personal Access Token** oluşturup (User settings → Applications → Personal access tokens) yapıştır ve **"Siteleri Listele"** ile siteni seç. Kurulum tek seferliktir; token panel şifrenle şifreli saklanır.
+3. Fiyatları düzenle → **"Kaydet"** → GitHub'a push edilir → Netlify otomatik deploy eder (1-2 dk içinde yayında).
+   - İlk kullanımda "⚙ GitHub'a Tek Tıkla Yayınla" bölümünden GitHub **Personal Access Token** oluşturup (Settings → Developer settings → Personal access tokens → `public_repo` scope) yapıştır ve **Repo Doğrula**'ya bas. Kurulum tek seferliktir; token panel şifrenle şifreli saklanır.
 
 ## Şifre Değiştirme
 
 Giriş yaptıktan sonra paneldeki **"Şifre Değiştir"** bölümünden mevcut + yeni şifreyi girip **"Şifreyi Kaydet"**:
 
-- `config.json` + güncel menü tek tıkla Netlify'a yayınlanır (Netlify bağlantısı zorunlu; ⚙ kurulumu önceden yapılmalı).
-- Şifre değişince şifreli saklanan Netlify token'ı da otomatik olarak yeni şifreyle yeniden şifrelenir.
-- Her durumda önce `python tools/build.py` çalıştır (gömülü yedekler senkron kalsın; sadece çift tıklama modu için gerekli).
+- `config.json` + güncel menü GitHub'a push edilir → Netlify otomatik deploy eder.
+- Şifre değişince şifreli saklanan GitHub token'ı da otomatik olarak yeni şifreyle yeniden şifrelenir.
 
 Elle değiştirmek için: `data/config.json` içindeki `adminPasswordHash` değerini şu komutla üretilen hash ile değiştir:
 
