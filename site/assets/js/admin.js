@@ -1,13 +1,12 @@
-/* NOX Lounge — Yönetim Paneli (şifreli fiyat güncelleme) */
+/* NOX Lounge — Yönetim Paneli (GitHub API entegrasyonu) */
 (function () {
   "use strict";
 
   var CONFIG_URL = "data/config.json";
   var MENU_URL = "data/menu.json";
-  var NETLIFY_API = "https://api.netlify.com/api/v1";
+  var GITHUB_API = "https://api.github.com";
 
-  /* Sitede yayında olan ve deploy'a dahil edilecek tüm dosyalar.
-     tools/build.py ile senkron tutulur. */
+  /* Sitede yayında olan ve deploy'a dahil edilecek tüm dosyalar. */
   var SITE_FILES = [
     "index.html",
     "yonetim-kzJNFLxj5Zw.html",
@@ -31,7 +30,6 @@
     "data/i18n/lang_ja.json",
     "data/i18n/lang_ru.json",
     "data/i18n/lang_zh.json",
-    "netlify/functions/deploy.mjs",
     "qr/admin.png",
     "qr/menu.png"
   ];
@@ -60,7 +58,7 @@
 
   /* ---------- token şifreleme (Web Crypto, PBKDF2 + AES-GCM) ---------- */
   var sessionPw = null;      // giriş şifresi (yalnız bellekte, oturum süresince)
-  var TOKEN_ENC_KEY = "nox_netlify_token";
+  var TOKEN_ENC_KEY = "nox_github_token";
 
   function b64enc(buf) {
     var bin = "";
@@ -100,7 +98,7 @@
       );
     }).then(function (ct) {
       localStorage.setItem(TOKEN_ENC_KEY, "v1:" + b64enc(salt) + ":" + b64enc(iv) + ":" + b64enc(ct));
-      $("nl-token").placeholder = "🔒 token şifreli kayıtlı (yeni gireceksen üzerine yaz)";
+      $("gh-token").placeholder = "🔒 token şifreli kayıtlı (yeni gireceksen üzerine yaz)";
     });
   }
 
@@ -123,13 +121,13 @@
   /* Kullanılacak token: alana yeni yazıldıysa o (ve şifreli kaydedilir),
      değilse şifreli depodan çözülür. Şifre gerekirse sorar. */
   function resolveToken() {
-    var fieldVal = $("nl-token").value.trim();
+    var fieldVal = $("gh-token").value.trim();
     if (fieldVal) {
       var p = sessionPw || window.prompt("Token şifreli saklanacak — korumak için yönetim şifrenizi girin:");
       if (!p) return Promise.reject(new Error("Token kaydedilmedi: şifre gerekli."));
       return storeTokenEncrypted(fieldVal, p).then(function () {
         sessionPw = p;
-        $("nl-token").value = "";
+        $("gh-token").value = "";
         return fieldVal;
       });
     }
@@ -177,11 +175,12 @@
     $("updated-label").textContent = menu.meta.updated || "";
     renderSections();
     var settings = loadSettings();
-    if (settings.site) $("nl-site").value = settings.site;
-    $("nl-token").value = "";
-    $("nl-token").placeholder = localStorage.getItem(TOKEN_ENC_KEY)
+    if (settings.owner) $("gh-owner").value = settings.owner;
+    if (settings.repo) $("gh-repo").value = settings.repo;
+    $("gh-token").value = "";
+    $("gh-token").placeholder = localStorage.getItem(TOKEN_ENC_KEY)
       ? "🔒 token şifreli kayıtlı (yeni gireceksen üzerine yaz)"
-      : "nfp_...";
+      : "ghp_...";
   }
 
   function newSection() {
@@ -453,22 +452,13 @@
     return copy;
   }
 
-  function triggerDownload(name, blob, mime) {
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-  }
-
   function loadSettings() {
     try {
-      var s = JSON.parse(localStorage.getItem("nox_netlify") || "{}");
+      var s = JSON.parse(localStorage.getItem("nox_github") || "{}");
       if (s.token) {
         var legacy = s.token;
         delete s.token;
-        localStorage.setItem("nox_netlify", JSON.stringify(s));
+        localStorage.setItem("nox_github", JSON.stringify(s));
         if (sessionPw) {
           storeTokenEncrypted(legacy, sessionPw).catch(function () {});
         }
@@ -478,109 +468,107 @@
   }
   function saveSettings(s) {
     var cur = loadSettings();
-    var next = { site: s.site != null ? s.site : cur.site };
-    localStorage.setItem("nox_netlify", JSON.stringify(next));
+    var next = {
+      owner: s.owner != null ? s.owner : cur.owner,
+      repo: s.repo != null ? s.repo : cur.repo
+    };
+    localStorage.setItem("nox_github", JSON.stringify(next));
   }
 
-  function netlifyDeploy(settings, overrides) {
-    var zip = new JSZip();
-    var fetchTasks = SITE_FILES.map(function (f) {
-      return fetch(f).then(function (r) {
-        if (!r.ok) throw new Error("Dosya erişilemedi: " + f + " (HTTP " + r.status + ")");
-        return r.blob();
-      }).then(function (blob) { zip.file(f, blob); });
-    });
-    return Promise.all(fetchTasks).then(function () {
-      Object.keys(overrides || {}).forEach(function (path) {
-        zip.file(path, overrides[path]);
-      });
-      return zip.generateAsync({ type: "blob" });
-    }).then(function (zipBlob) {
-      return fetch(NETLIFY_API + "/sites/" + encodeURIComponent(settings.site) + "/deploys", {
-        method: "POST",
-        headers: { Authorization: "Bearer " + settings.token, "Content-Type": "application/zip" },
-        body: zipBlob
-      }).then(function (r) {
-        if (r.status === 404) {
-          throw new Error("Site bulunamadı: ⚙ bölümünde 'Siteleri Listele' ile siteni seç (site adı/ID yanlış olabilir).");
-        }
-        if (r.status === 401) {
-          throw new Error("Token geçersiz veya süresi dolmuş: ⚙ bölümüne yeni bir Netlify Token gir.");
-        }
-        if (!r.ok) {
-          return r.text().then(function (txt) {
-            throw new Error("Netlify deploy hatası (HTTP " + r.status + "): " + txt.slice(0, 300));
-          });
-        }
-        return r.json();
-      }).then(function (deploy) {
-        if (deploy && deploy.state === "error") {
-          throw new Error("Netlify deploy işlenirken hata: " + (deploy.error_message || "bilinmeyen"));
-        }
-        return deploy;
-      }).catch(function (err) {
-        err.zipBlob = zipBlob;
-        throw err;
-      });
+  /* ---------- GitHub API ---------- */
+  function githubHeaders(token) {
+    return {
+      Authorization: "token " + token,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json"
+    };
+  }
+
+  function githubGetFile(token, owner, repo, path) {
+    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo + "/contents/" + path, {
+      headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" }
+    }).then(function (r) {
+      if (r.status === 404) return null; // dosya yoksa yeni oluşturulacak
+      if (!r.ok) throw new Error("GitHub dosya okuma hatası (HTTP " + r.status + ")");
+      return r.json();
     });
   }
 
-  function listNetlifySites() {
-    resolveToken().then(function (token) {
-      if (!token) return setMsg("nl-msg", "Token yok: ⚙ bölümüne Netlify Token gir (şifreli saklanır).", false);
-      setMsg("nl-msg", "Siteler listeleniyor…", false);
-      return fetch(NETLIFY_API + "/sites?filter=all&per_page=100", {
-        headers: { Authorization: "Bearer " + token }
-      }).then(function (r) {
-        if (!r.ok) throw new Error("Token reddedildi (HTTP " + r.status + ")");
-        return r.json();
-      }).then(function (sites) {
-      if (!sites || !sites.length) {
-        setMsg("nl-msg", "Hesapta site bulunamadı. Drop ile yüklenen sitenin hesabınıza bağlı olduğundan emin olun.", false);
-        return;
+  function githubPutFile(token, owner, repo, path, content, message, sha) {
+    var body = {
+      message: message,
+      content: btoa(unescape(encodeURIComponent(content))),
+      branch: "main"
+    };
+    if (sha) body.sha = sha;
+
+    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo + "/contents/" + path, {
+      method: "PUT",
+      headers: githubHeaders(token),
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (!r.ok) {
+        return r.json().then(function (err) {
+          throw new Error("GitHub yazma hatası (" + path + "): " + (err.message || "HTTP " + r.status));
+        });
       }
-      var sel = $("nl-sites");
-      sel.innerHTML = "";
-      sites.forEach(function (s) {
-        var o = document.createElement("option");
-        o.value = s.id || s.name;
-        o.dataset.name = s.name || "";
-        o.textContent = (s.name || s.id) + (s.ssl_url ? "  —  " + s.ssl_url.replace(/^https?:\/\//, "") : "");
-        sel.appendChild(o);
-      });
-      sel.style.display = "block";
-      setMsg("nl-msg", sites.length + " site bulundu — listeden seçin.", true);
-      });
-    }).catch(function (err) {
-      setMsg("nl-msg", "Hata: " + err.message, false);
+      return r.json();
     });
   }
 
+  function githubPush(token, owner, repo, files) {
+    /* files: { path: content } — sırayla her dosyayı GitHub'a yazar */
+    var paths = Object.keys(files);
+    var chain = Promise.resolve();
+
+    paths.forEach(function (path) {
+      chain = chain.then(function () {
+        return githubGetFile(token, owner, repo, path).then(function (existing) {
+          var sha = existing ? existing.sha : null;
+          return githubPutFile(token, owner, repo, path, files[path], "NOX QR Menu guncelleme: " + path, sha);
+        });
+      });
+    });
+
+    return chain;
+  }
+
+  function validateGitHub(owner, repo, token) {
+    return fetch(GITHUB_API + "/repos/" + owner + "/" + repo, {
+      headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" }
+    }).then(function (r) {
+      if (r.status === 404) throw new Error("Repo bulunamadı: " + owner + "/" + repo);
+      if (!r.ok) throw new Error("GitHub erişim hatası (HTTP " + r.status + ")");
+      return r.json();
+    }).then(function (data) {
+      return { name: data.full_name, url: data.html_url, private: data.private };
+    });
+  }
+
+  /* ---------- kaydet ---------- */
   function onSave() {
     var content = JSON.stringify(buildJSON(), null, 2) + "\n";
-    var site = $("nl-site").value.trim();
-    if (!site) {
-      setMsg("save-msg", "Kaydedilemedi: önce ⚙ Netlify bölümünde siteni seç (tek seferlik kurulum).", false);
+    var owner = $("gh-owner").value.trim();
+    var repo = $("gh-repo").value.trim();
+    if (!owner || !repo) {
+      setMsg("save-msg", "Kaydedilemedi: ⚙ GitHub bölümünde owner/repo gir.", false);
       return;
     }
-    setMsg("save-msg", "Kaydediliyor (site Netlify'a yükleniyor)…", false);
+    setMsg("save-msg", "Kaydediliyor (GitHub'a push yapılıyor)…", false);
     resolveToken().then(function (token) {
       if (!token) {
-        setMsg("save-msg", "Kaydedilemedi: ⚙ bölümüne Netlify Token gir (şifreli saklanır).", false);
+        setMsg("save-msg", "Kaydedilemedi: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
         return;
       }
-      saveSettings({ site: site });
-      return netlifyDeploy({ token: token, site: site }, { "data/menu.json": content }).then(function () {
+      saveSettings({ owner: owner, repo: repo });
+      var files = {};
+      files["data/menu.json"] = content;
+      return githubPush(token, owner, repo, files).then(function () {
         dirty = false;
-        setMsg("save-msg", "Kayıt Başarılı! Netlify'a yayınlandı — 1-2 dk içinde sitede görünür.", true);
+        setMsg("save-msg", "Kayıt Başarılı! GitHub'a push edildi — Netlify 1-2 dk içinde otomatik deploy edecek.", true);
       });
     }).catch(function (err) {
-      if (err.zipBlob) {
-        triggerDownload("nox-site.zip", err.zipBlob, "application/zip");
-        setMsg("save-msg", "Kayıt Başarılı! Zip dosyasını https://app.netlify.com/drop adresine sürükle-bırak yap.", true);
-      } else {
-        setMsg("save-msg", "Kayıt başarısız: " + err.message, false);
-      }
+      setMsg("save-msg", "Kayıt başarısız: " + err.message, false);
     });
   }
 
@@ -600,63 +588,71 @@
       sha256hex(n1).then(function (newHash) {
         var updated = JSON.parse(JSON.stringify(cfg));
         updated.adminPasswordHash = newHash;
-        var content = JSON.stringify(updated, null, 2) + "\n";
+        var configContent = JSON.stringify(updated, null, 2) + "\n";
+        var menuContent = JSON.stringify(buildJSON(), null, 2) + "\n";
+
         var apply = function () {
           cfg.adminPasswordHash = newHash;
           sessionPw = n1;
           $("pw-current").value = $("pw-new").value = $("pw-new2").value = "";
         };
-        var site = $("nl-site").value.trim();
-        if (!site) {
-          setMsg("pw-msg", "Şifre kaydedilemedi: önce ⚙ Netlify bölümünde siteni seç.", false);
+
+        var owner = $("gh-owner").value.trim();
+        var repo = $("gh-repo").value.trim();
+        if (!owner || !repo) {
+          setMsg("pw-msg", "Şifre kaydedilemedi: ⚙ GitHub bölümünde owner/repo gir.", false);
           return;
         }
-        setMsg("pw-msg", "Şifre kaydediliyor (site Netlify'a yükleniyor)…", false);
+        setMsg("pw-msg", "Şifre kaydediliyor (GitHub'a push yapılıyor)…", false);
         resolveToken().then(function (token) {
           if (!token) {
-            setMsg("pw-msg", "Şifre kaydedilemedi: ⚙ bölümüne Netlify Token gir (şifreli saklanır).", false);
+            setMsg("pw-msg", "Şifre kaydedilemedi: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
             return;
           }
-          return netlifyDeploy({ token: token, site: site }, { "data/config.json": content, "data/menu.json": JSON.stringify(buildJSON(), null, 2) + "\n" })
-            .then(function () {
-              apply();
-              return decryptToken(cur).then(function (oldToken) {
-                if (oldToken) return storeTokenEncrypted(oldToken, n1);
-                return null;
-              });
-            })
-            .then(function () {
-              setMsg("pw-msg", "Kayıt Başarılı! Şifre değişti ve Netlify'a yayınlandı (1-2 dk).", true);
-            });
-        }).catch(function (err) {
-          if (err.zipBlob) {
+          var files = {};
+          files["data/config.json"] = configContent;
+          files["data/menu.json"] = menuContent;
+          return githubPush(token, owner, repo, files).then(function () {
             apply();
-            decryptToken(cur).then(function (oldToken) {
+            return decryptToken(cur).then(function (oldToken) {
               if (oldToken) return storeTokenEncrypted(oldToken, n1);
+              return null;
             });
-            triggerDownload("nox-site.zip", err.zipBlob, "application/zip");
-            setMsg("pw-msg", "Kayıt Başarılı! Zip dosyasını https://app.netlify.com/drop adresine sürükle-bırak yap.", true);
-          } else {
-            setMsg("pw-msg", "Kayıt başarısız: " + err.message, false);
-          }
+          }).then(function () {
+            setMsg("pw-msg", "Kayıt Başarılı! Şifre değişti ve GitHub'a push edildi — Netlify 1-2 dk içinde deploy edecek.", true);
+          });
+        }).catch(function (err) {
+          setMsg("pw-msg", "Kayıt başarısız: " + err.message, false);
         });
       });
     });
   }
 
   function initPasswordChange() {
-    $("pw-save-netlify").addEventListener("click", onPasswordChange);
+    $("pw-save-github").addEventListener("click", onPasswordChange);
+  }
+
+  /* ---------- GitHub doğrulama ---------- */
+  function validateGitHubRepo() {
+    resolveToken().then(function (token) {
+      if (!token) return setMsg("gh-msg", "Token yok: ⚙ bölümüne GitHub Token gir (şifreli saklanır).", false);
+      var owner = $("gh-owner").value.trim();
+      var repo = $("gh-repo").value.trim();
+      if (!owner || !repo) return setMsg("gh-msg", "Owner ve Repo alanlarını doldur.", false);
+      setMsg("gh-msg", "Repo doğrulanıyor…", false);
+      return validateGitHub(owner, repo, token).then(function (info) {
+        saveSettings({ owner: owner, repo: repo });
+        setMsg("gh-msg", "Repo bulundu: " + info.name + (info.private ? " (private)" : " (public)") + " — " + info.url, true);
+      });
+    }).catch(function (err) {
+      setMsg("gh-msg", "Hata: " + err.message, false);
+    });
   }
 
   /* ---------- kurulum ---------- */
   function initPanel() {
-    $("save-netlify").addEventListener("click", onSave);
-    $("nl-list").addEventListener("click", listNetlifySites);
-    $("nl-sites").addEventListener("change", function () {
-      $("nl-site").value = this.value;
-      saveSettings({ site: this.value });
-      setMsg("nl-msg", "Site seçildi: " + this.value, true);
-    });
+    $("save-github").addEventListener("click", onSave);
+    $("gh-validate").addEventListener("click", validateGitHubRepo);
     $("logout").addEventListener("click", function () {
       sessionStorage.removeItem("nox_auth");
       location.reload();

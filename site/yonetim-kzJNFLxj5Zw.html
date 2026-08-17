@@ -43,29 +43,31 @@
 
     <button class="add-section" id="add-section">+ Yeni Bölüm Ekle</button>
 
-    <!-- Netlify ile tek tık kaydet -->
+    <!-- GitHub ile tek tık kaydet -->
     <details class="settings">
-      <summary>⚙ Netlify'a Tek Tıkla Yayınla</summary>
+      <summary>⚙ GitHub'a Tek Tıkla Yayınla</summary>
       <div class="hint">
-        Değişiklikleri <b>doğrudan Netlify sitene</b> gönderir.
-        Kurulum (tek seferlik): Netlify hesabına gir → <b>User settings → Applications →
-        Personal access tokens → New token</b> oluştur → aşağıya yapıştır → <b>Siteleri Listele</b>'ye bas
-        → kendi siteni seç. Token <b>panel şifrenle şifrelenerek</b> bu tarayıcıda saklanır (asla düz metin değil).
-        Tarayıcı CORS hatası verirse zip otomatik indirilir → <a href="https://app.netlify.com/drop" target="_blank">Netlify Drop</a>'a sürükle-bırak.
+        Değişiklikleri <b>GitHub repo'ya push eder</b>, Netlify otomatik deploy eder.
+        Kurulum (tek seferlik): GitHub hesabına gir → <b>Settings → Developer settings →
+        Personal access tokens → Tokens (classic) → Generate new token</b> → <b>public_repo</b> veya <b>repo</b> scope seç →
+        oluştur → aşağıya yapıştır → <b>Repo Doğrula</b>'ya bas. Token <b>panel şifrenle şifrelenerek</b> bu tarayıcıda saklanır (asla düz metin değil).
       </div>
       <div class="field">
-        <label for="nl-token">Netlify Token (Personal Access Token)</label>
-        <input id="nl-token" type="password" placeholder="nfp_...">
+        <label for="gh-token">GitHub Token (Personal Access Token)</label>
+        <input id="gh-token" type="password" placeholder="ghp_...">
       </div>
       <div class="field">
-        <label for="nl-site">Site (ad veya ID)</label>
-        <input id="nl-site" type="text" placeholder="örn. nox-lounge">
+        <label for="gh-owner">Repo Owner (kullanıcı/ad)</label>
+        <input id="gh-owner" type="text" placeholder="örn. barisakman2026-hub">
+      </div>
+      <div class="field">
+        <label for="gh-repo">Repo Adı</label>
+        <input id="gh-repo" type="text" placeholder="örn. noxqrmenu">
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-ghost" id="nl-list" type="button">Siteleri Listele</button>
+        <button class="btn btn-ghost" id="gh-validate" type="button">Repo Doğrula</button>
       </div>
-      <select id="nl-sites" style="display:none;width:100%;margin-top:10px;"></select>
-      <div class="msg" id="nl-msg"></div>
+      <div class="msg" id="gh-msg"></div>
     </details>
 
     <!-- Şifre değiştir -->
@@ -73,8 +75,7 @@
       <summary>🛡 Şifre Değiştir</summary>
       <div class="hint">
         Yeni şifre en az 6 karakter olmalı. Değişiklik <b>config.json</b>'a yazılır ve
-        <b>Netlify bağlantısı üzerinden tek tıkla yayına alınır</b> (kurulum ⚙ bölümünde yapılır).
-        CORS hatasında zip otomatik indirilir → Netlify Drop'a yükle.
+        <b>GitHub'a push edilir → Netlify otomatik deploy eder</b> (kurulum ⚙ bölümünde yapılır).
       </div>
       <div class="field">
         <label for="pw-current">Mevcut şifre</label>
@@ -89,7 +90,7 @@
         <input id="pw-new2" type="password" autocomplete="new-password">
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-gold" id="pw-save-netlify">Şifreyi Kaydet</button>
+        <button class="btn btn-gold" id="pw-save-github">Şifreyi Kaydet</button>
       </div>
       <div class="msg" id="pw-msg"></div>
     </details>
@@ -98,7 +99,7 @@
   <!-- ============ KAYDETME ÇUBUĞU ============ -->
   <div class="savebar" style="display:none;" id="savebar">
     <div class="msg" id="save-msg" style="flex:1;text-align:left;"></div>
-    <button class="btn btn-gold" id="save-netlify">Kaydet</button>
+    <button class="btn btn-gold" id="save-github">Kaydet</button>
   </div>
 
   <!-- Gömülü yedek veri (tools/build.py ile üretilir) -->
